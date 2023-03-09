@@ -3,32 +3,33 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - OnlyPlayer
   - Water
   - UI
   - 
   - 
+  - Enemy Weapon
+  - EnemyParent
+  - Floor
+  - Enemies
+  - Player
+  - Player Projectile
+  - Enemy Projectile
+  - Player Shield
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Death
+  - Obstacles
+  - NPCs
+  - Pick-Ups
+  - Items
+  - Enemy death layer
   - 
   - 
   - 
@@ -38,6 +39,33 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4016382551
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back decoration
+    uniqueID: 1513141685
+    locked: 0
+  - name: Tilemap
+    uniqueID: 709531311
+    locked: 0
+  - name: NPCs
+    uniqueID: 1791877335
+    locked: 0
+  - name: Characters
+    uniqueID: 1909770627
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1165260951
+    locked: 0
+  - name: Front decoration
+    uniqueID: 1918079531
+    locked: 0
+  - name: UI
+    uniqueID: 1314457723
+    locked: 0
+  - name: Front
+    uniqueID: 3534725115
     locked: 0
