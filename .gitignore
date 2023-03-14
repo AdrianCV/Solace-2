@@ -84,3 +84,5 @@ ProjectSettings/Packages/com.unity.probuilder/Settings.json
 Assets/Plugins/FMOD/platforms/win/lib/x86_64/fmodstudioL.dll.meta
 
 Assets/MemberFolders/Design/System Designer/Jørn-Ketil Sandåker.meta
+
+ProjectSettings/EditorBuildSettings.asset
