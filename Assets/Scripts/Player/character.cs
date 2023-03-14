@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 
-public class character : MonoBehaviour
+public class character : MonoBehaviour, IPunObservable
 {
     public float speed = 0.1f;
     [SerializeField] private float m_JumpForce = 400f;
@@ -49,6 +49,7 @@ public class character : MonoBehaviour
         // Start function WaitAndPrint as a coroutine.
 
         view = GetComponent<PhotonView>();
+        AddObservable();
 
         coroutine = WaitAndPrint(2.0f);
         StartCoroutine(coroutine);
@@ -252,6 +253,27 @@ public class character : MonoBehaviour
         {
             transform.position += Vector3.right * MoveInput * speed;
             playerAnim.SetFloat("speed", MoveInput);
+        }
+    }
+
+    private void AddObservable()
+    {
+        if (!view.ObservedComponents.Contains(this))
+        {
+            view.ObservedComponents.Add(this);
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(stickRender.flipX);
+            // stream.SendNext(playerAnim);
+        }
+        else
+        {
+            stickRender.flipX = (bool)stream.ReceiveNext();
         }
     }
 }

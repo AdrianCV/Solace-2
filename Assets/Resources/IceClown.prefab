@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 928406103804344207}
   - component: {fileID: 928406103804344204}
   - component: {fileID: 928406103804344205}
+  - component: {fileID: 8229437124340405837}
   - component: {fileID: 6214354607007751993}
   m_Layer: 0
   m_Name: iceClownSprites_0
@@ -108,6 +109,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8229437124340405837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928406103804344202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 6214354607007751993}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &6214354607007751993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +146,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: running
+  - Type: 9
+    SynchronizeType: 2
+    Name: hurt
+  - Type: 9
+    SynchronizeType: 2
+    Name: throw
+  - Type: 4
+    SynchronizeType: 2
+    Name: idle
+  - Type: 9
+    SynchronizeType: 2
+    Name: attacking
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &993090250629722783
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +539,8 @@ GameObject:
   - component: {fileID: 8246759984356114265}
   - component: {fileID: -8014928697337248755}
   - component: {fileID: 6018666554351436320}
-  m_Layer: 11
+  - component: {fileID: 1586497779}
+  m_Layer: 12
   m_Name: IceClown
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -593,7 +635,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8246759984356114265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -640,6 +682,8 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6018666554351436320}
+  - {fileID: 1586497779}
+  - {fileID: 6214354607007751993}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -659,10 +703,10 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -676,3 +720,19 @@ MonoBehaviour:
     InterpolateOption: 1
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &1586497779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790027306584472616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
