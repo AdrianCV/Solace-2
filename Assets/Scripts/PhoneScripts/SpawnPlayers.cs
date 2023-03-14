@@ -10,6 +10,18 @@ public class SpawnPlayers : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        PhotonNetwork.Instantiate(Player.name, new Vector2(0, 0), Quaternion.identity);
+        string preName;
+        if (PhotonNetwork.LocalPlayer.CustomProperties["Guardian"] != null)
+        {
+            preName = "Guardian";
+        }
+        else
+        {
+            preName = "IceClown";
+        }
+
+        // if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        // {
+        PhotonNetwork.Instantiate(preName, new Vector2(0, 0), Quaternion.identity);
     }
 }

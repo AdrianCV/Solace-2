@@ -7655,7 +7655,7 @@ GameObject:
   - component: {fileID: 1259823055342042229}
   - component: {fileID: 3129807035940133647}
   m_Layer: 12
-  m_Name: player 1
+  m_Name: Guardian
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8044,7 +8044,7 @@ MonoBehaviour:
     InterpolateRotateTowardsSpeed: 180
     InterpolateLerpSpeed: 5
   m_ScaleModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
@@ -8066,7 +8066,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1259823055342042229}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
