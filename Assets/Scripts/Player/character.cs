@@ -163,15 +163,27 @@ public class character : MonoBehaviour
         }
     }
 
-    public void jump(InputAction.CallbackContext context)
+    public void jump()
     {
         // print("jump");
         // Jumping
-        if (context.performed && !shockShieldOn && grounded)
+        if (_guardian)
         {
-            startHeight = this.transform.position.y;
-            rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
-            playerAnim.SetTrigger("jump");
+            if (!shockShieldOn && grounded)
+            {
+                startHeight = this.transform.position.y;
+                rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+                playerAnim.SetTrigger("jump");
+            }
+        }
+        else
+        {
+            if (grounded)
+            {
+                startHeight = this.transform.position.y;
+                rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+                playerAnim.SetTrigger("jump");
+            }
         }
     }
 

@@ -518,15 +518,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  m_JumpForce: 400
-  groundedHeight: 0.51
+  m_JumpForce: 14
+  groundedHeight: 0.27
   checkRate: 1
   grounded: 0
   onWall: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  heightOffset: 0.25
+    m_Bits: 1024
+  heightOffset: -0.85
   looking: 1
   jumpHeight: 4
   MoveInput: 0

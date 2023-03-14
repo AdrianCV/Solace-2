@@ -11,10 +11,16 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     [SerializeField] private bool isPressed;
 
     [SerializeField] private bool isLeft;
+
+    private character _player;
     // Start is called before the first frame update
     void Start()
     {
         view = GameObject.FindGameObjectWithTag("Player").GetComponent<PhotonView>();
+        if (view.IsMine)
+        {
+            _player = view.GetComponent<character>();
+        }
     }
 
     public void MoveLeft()
@@ -56,6 +62,15 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         isPressed = false;
         view.GetComponent<character>().MoveInput = 0;
 
+    }
+
+    public void Jump()
+    {
+        if (view.IsMine)
+        {
+            _player.jump();
+            print(_player.gameObject.name);
+        }
     }
 }
 
