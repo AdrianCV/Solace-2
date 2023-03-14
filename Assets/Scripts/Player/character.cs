@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class character : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class character : MonoBehaviour
 
     private IEnumerator coroutine;
 
+    [SerializeField] private bool _guardian;
+    [SerializeField] private Camera _cam;
+
+    PhotonView view;
+
 
     private void Start()
     {
@@ -41,6 +47,8 @@ public class character : MonoBehaviour
         //print("Starting " + Time.time);
 
         // Start function WaitAndPrint as a coroutine.
+
+        view = GetComponent<PhotonView>();
 
         coroutine = WaitAndPrint(2.0f);
         StartCoroutine(coroutine);
@@ -59,93 +67,100 @@ public class character : MonoBehaviour
 
     void Update()
     {
-        // MoveInput = Input.GetAxis("Horizontal");
-        playerAnim.SetBool("grounded", grounded);
+        if (view.IsMine)
+        {// MoveInput = Input.GetAxis("Horizontal");
+            playerAnim.SetBool("grounded", grounded);
 
-        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("sit"))
-        {
-            isSitting = true;
-        }
-        else
-        {
-            isSitting = false;
-        }
-
-        playerAnim.SetFloat("velocity", rb.velocity.y);
-        GroundCheck();
-
-        // Checks if shield is on
-        if (FindObjectOfType<shockShield>().enabled == true && FindObjectOfType<shockShield>().shieldOn == true)
-        {
-            shockShieldOn = true;
-        }
-        else
-        {
-            shockShieldOn = false;
-        }
-
-        // Jumping
-        /*
-        if (!shockShieldOn && grounded && !isSitting)
-        {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+            if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("sit"))
             {
-                startHeight = this.transform.position.y;
-                rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+                isSitting = true;
+            }
+            else
+            {
+                isSitting = false;
+            }
+
+            playerAnim.SetFloat("velocity", rb.velocity.y);
+            GroundCheck();
+
+            // Checks if shield is on
+            if (_guardian)
+            {
+                if (FindObjectOfType<shockShield>().enabled == true && FindObjectOfType<shockShield>().shieldOn == true)
+                {
+                    shockShieldOn = true;
+                }
+                else
+                {
+                    shockShieldOn = false;
+                }
+            }
+            // Jumping
+            /*
+            if (!shockShieldOn && grounded && !isSitting)
+            {
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    startHeight = this.transform.position.y;
+                    rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+                }
+            }
+            */
+            // Moving left
+            // if (!onWall && FindObjectOfType<dashMove>().isDashing == false && !isSitting && FindObjectOfType<PauseMenu>().paused == false && FindObjectOfType<PauseMenu>().inventoryUp == false)
+            // {
+            if (MoveInput < 0)
+            {
+                stickRender.flipX = true;
+                looking = -1;
+                playerAnim.SetBool("running", true);
+            }
+            // Moving right
+            if (MoveInput > 0)
+            {
+                stickRender.flipX = false;
+                looking = 1;
+                playerAnim.SetBool("running", true);
+            }
+            // }
+
+            if (MoveInput == 0)
+            {
+                playerAnim.SetBool("running", false);
+            }
+
+            // Wall jump
+
+            wallCheck();
+            if (onWall)
+            {
+
+                playerAnim.SetBool("onWall", true);
+
+                //rb.velocity = new Vector2(rb.velocity.x, 0);
+
+                /*if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    rb.AddForce(new Vector2(300*-looking, 600));
+                    StartCoroutine(waitWall());
+                }*/
+
+            }
+            else if (!onWall)
+            {
+                playerAnim.SetBool("onWall", false);
+            }
+
+            if (this.transform.position.y > startHeight + jumpHeight)
+            {
+                //rb.velocity = new Vector2(rb.velocity.x, 0);
+                startHeight = 10000;
             }
         }
-        */
-        // Moving left
-        // if (!onWall && FindObjectOfType<dashMove>().isDashing == false && !isSitting && FindObjectOfType<PauseMenu>().paused == false && FindObjectOfType<PauseMenu>().inventoryUp == false)
-        // {
-        if (MoveInput < 0)
+        else
         {
-            stickRender.flipX = true;
-            looking = -1;
-            playerAnim.SetBool("running", true);
+            _cam.enabled = false;
         }
-        // Moving right
-        if (MoveInput > 0)
-        {
-            stickRender.flipX = false;
-            looking = 1;
-            playerAnim.SetBool("running", true);
-        }
-        // }
-
-        if (MoveInput == 0)
-        {
-            playerAnim.SetBool("running", false);
-        }
-
-        // Wall jump
-
-        wallCheck();
-        if (onWall)
-        {
-
-            playerAnim.SetBool("onWall", true);
-
-            //rb.velocity = new Vector2(rb.velocity.x, 0);
-
-            /*if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                rb.AddForce(new Vector2(300*-looking, 600));
-                StartCoroutine(waitWall());
-            }*/
-
-        }
-        else if (!onWall)
-        {
-            playerAnim.SetBool("onWall", false);
-        }
-
-        if (this.transform.position.y > startHeight + jumpHeight)
-        {
-            //rb.velocity = new Vector2(rb.velocity.x, 0);
-            startHeight = 10000;
-        }
-
     }
 
     public void jump(InputAction.CallbackContext context)

@@ -7685,7 +7685,7 @@ Transform:
   - {fileID: 4276609412938177781}
   - {fileID: 2920739687048719965}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1162901863548322189
 SpriteRenderer:
@@ -7768,6 +7768,8 @@ MonoBehaviour:
   playerAnim: {fileID: 1162901862515322688}
   isSitting: 0
   wallDistance: 0.4
+  _guardian: 1
+  _cam: {fileID: 1162901863281525767}
 --- !u!114 &1162901863548322191
 MonoBehaviour:
   m_ObjectHideFlags: 0
