@@ -33,7 +33,7 @@ public class character : MonoBehaviour
 
     private IEnumerator coroutine;
 
-    [SerializeField] private bool _guardian;
+    public bool IsGuardian;
     [SerializeField] private Camera _cam;
 
     PhotonView view;
@@ -84,7 +84,7 @@ public class character : MonoBehaviour
             GroundCheck();
 
             // Checks if shield is on
-            if (_guardian)
+            if (IsGuardian)
             {
                 if (FindObjectOfType<shockShield>().enabled == true && FindObjectOfType<shockShield>().shieldOn == true)
                 {
@@ -159,7 +159,8 @@ public class character : MonoBehaviour
         }
         else
         {
-            _cam.enabled = false;
+            _cam.gameObject.SetActive(false);
+            gameObject.layer = 11;
         }
     }
 
@@ -167,7 +168,7 @@ public class character : MonoBehaviour
     {
         // print("jump");
         // Jumping
-        if (_guardian)
+        if (IsGuardian)
         {
             if (!shockShieldOn && grounded)
             {

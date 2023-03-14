@@ -24,13 +24,13 @@ public class energyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Calculate where to send the soules
-        energyPosition = new Vector2((energy-5f)/2, 0) + new Vector2(energyBar.transform.position.x, energyBar.transform.position.y);
+        // // Calculate where to send the soules
+        // energyPosition = new Vector2((energy-5f)/2, 0) + new Vector2(energyBar.transform.position.x, energyBar.transform.position.y);
 
-        // energyBar.barSlider.value = energy;
-        // energyBar.material.SetFloat("_Health", energy / maxEnergy);
-        barEnergy = Mathf.MoveTowards(barEnergy, energy, 10 * Time.deltaTime);
-        energyBar.material.SetFloat("_Health", barEnergy / maxEnergy);
+        // // energyBar.barSlider.value = energy;
+        // // energyBar.material.SetFloat("_Health", energy / maxEnergy);
+        // barEnergy = Mathf.MoveTowards(barEnergy, energy, 10 * Time.deltaTime);
+        // energyBar.material.SetFloat("_Health", barEnergy / maxEnergy);
 
 
         // text.text = "Energy: " + energy + "/10";

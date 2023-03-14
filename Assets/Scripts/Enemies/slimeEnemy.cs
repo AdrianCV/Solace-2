@@ -26,7 +26,7 @@ public class slimeEnemy : MonoBehaviour
     [SerializeField] private Vector2 initJump = new Vector2(4, 4);
     [SerializeField] private Vector2 jumpTimer = new Vector2(1, 1);
 
-    public Vector2 groundedHeight = new Vector2(0,0.51f);
+    public Vector2 groundedHeight = new Vector2(0, 0.51f);
     public Vector2 groundedHeight2 = new Vector2(0, 0.51f);
     public LayerMask groundLayer;
     public float heightOffset = 0.25f;
@@ -106,7 +106,7 @@ public class slimeEnemy : MonoBehaviour
     // Simple function that moves it in a direction.
     void moveEnemy()
     {
-        if (this.GetComponent<EnemyDamageTaken>().isDead == false)
+        if (this.GetComponent<damagePlayer>().isDead == false)
         {
             // print("up?");
             anim.SetTrigger("Up");
@@ -117,7 +117,7 @@ public class slimeEnemy : MonoBehaviour
 
     void keepJumping()
     {
-        if(onGround == true || onGround2 == true)
+        if (onGround == true || onGround2 == true)
         {
             moveEnemy();
         }

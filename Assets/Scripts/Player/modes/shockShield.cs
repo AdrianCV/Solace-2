@@ -61,17 +61,17 @@ public class shockShield : MonoBehaviour
                 FindObjectOfType<energyController>().reduceEnergy(3);
                 foreach (Collider2D fiend in enemyColliders)
                 {
-                    if (fiend.GetComponent<EnemyDamageTaken>() != null)
+                    if (fiend.GetComponent<damagePlayer>() != null)
                     {
-                        fiend.GetComponent<EnemyDamageTaken>().recieveDamage(2);
-                        if (this.transform.position.x < fiend.transform.position.x)
-                        {
-                            fiend.GetComponent<EnemyDamageTaken>().hDir = 1;
-                        }
-                        else if (this.transform.position.x > fiend.transform.position.x)
-                        {
-                            fiend.GetComponent<EnemyDamageTaken>().hDir = -1;
-                        }
+                        fiend.GetComponent<damagePlayer>().recieveDamage();
+                        // if (this.transform.position.x < fiend.transform.position.x)
+                        // {
+                        //     fiend.GetComponent<damagePlayer>().hDir = 1;
+                        // }
+                        // else if (this.transform.position.x > fiend.transform.position.x)
+                        // {
+                        //     fiend.GetComponent<damagePlayer>().hDir = -1;
+                        // }
                     }
                 }
             }
@@ -102,11 +102,12 @@ public class shockShield : MonoBehaviour
     {
         FindObjectOfType<damagePlayer>().shieldOn = shieldOn;
 
-        if(FindObjectOfType<energyController>().energy > 0 && shieldOn == true)
+        if (FindObjectOfType<energyController>().energy > 0 && shieldOn == true)
         {
             cc.enabled = true;
             //sr.enabled = true;
-        } else
+        }
+        else
         {
             cc.enabled = false;
             //sr.enabled = false;
@@ -125,7 +126,7 @@ public class shockShield : MonoBehaviour
 
     void reduceEnergy()
     {
-        if(shieldOn == true)
+        if (shieldOn == true)
         {
             FindObjectOfType<energyController>().reduceEnergy(0.5f);
         }

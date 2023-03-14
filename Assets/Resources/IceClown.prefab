@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 928406103804344207}
   - component: {fileID: 928406103804344204}
   - component: {fileID: 928406103804344205}
+  - component: {fileID: 6214354607007751993}
   m_Layer: 0
   m_Name: iceClownSprites_0
   m_TagString: Untagged
@@ -107,6 +108,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6214354607007751993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928406103804344202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!1 &993090250629722783
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,10 +493,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5790027306584472617}
   - component: {fileID: 5790027306584472622}
+  - component: {fileID: 2114141836855100458}
   - component: {fileID: 5790027306584472623}
+  - component: {fileID: 8246759984356114265}
   - component: {fileID: -8014928697337248755}
   - component: {fileID: 6018666554351436320}
-  - component: {fileID: 8246759984356114265}
   m_Layer: 11
   m_Name: IceClown
   m_TagString: Player
@@ -534,8 +552,27 @@ MonoBehaviour:
   playerAnim: {fileID: 928406103804344205}
   isSitting: 0
   wallDistance: 0.325
-  _guardian: 0
+  IsGuardian: 0
   _cam: {fileID: 5734929817429010061}
+--- !u!114 &2114141836855100458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790027306584472616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee92861f02f24d48a1f129a8ffca105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 5
+  maxHp: 5
+  hitEffect: {fileID: 7111067520612749463, guid: 6f52278c462af2b4493ce8e0b11e6670, type: 3}
+  deathAnim: {fileID: 928406103804344205}
+  isDead: 0
+  isMortal: 1
+  shieldOn: 0
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4
@@ -557,6 +594,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &8246759984356114265
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790027306584472616}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.31548113}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.7001086}
+  m_EdgeRadius: 0
 --- !u!114 &-8014928697337248755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,32 +673,6 @@ MonoBehaviour:
     InterpolateLerpSpeed: 5
   m_ScaleModel:
     SynchronizeEnabled: 1
-    InterpolateOption: 0
+    InterpolateOption: 1
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!61 &8246759984356114265
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5790027306584472616}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.31548113}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.7001086}
-  m_EdgeRadius: 0

@@ -8,7 +8,6 @@ using TMPro;
 public class damagePlayer : MonoBehaviour
 {
     public float hp = 5;
-    public TextMeshProUGUI text;
     public float maxHp;
     private Rigidbody2D rb;
     public GameObject hitEffect;
@@ -20,22 +19,19 @@ public class damagePlayer : MonoBehaviour
     private bool enterIn = false;
     private bool instantDeath = false;
 
-    public healthBar hpBar;
     private dashMove dashScript;
-    [SerializeField] private Transform[] healthOrbs;
-    [SerializeField] private GameObject hpEffect;
 
-    public Vector3 lastCheckPos;
 
-    private IEnumerator pause;
+    private character _character;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastCheckPos = transform.position;
         maxHp = hp;
         rb = this.GetComponent<Rigidbody2D>();
         dashScript = FindObjectOfType<dashMove>();
+
+        _character = GetComponent<character>();
     }
 
     public void enterDown(InputAction.CallbackContext context)
@@ -57,28 +53,29 @@ public class damagePlayer : MonoBehaviour
         // hpBar.barSlider.value = hp;
 
         // Logic for which orbs appear
-        for (int i = 0; i < healthOrbs.Length; i++)
-        {
-            if (hp > i)
-            {
-                if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == false)
-                {
-                    // print("new orb");
-                    healthOrbs[i].gameObject.GetComponent<Animator>().SetTrigger("grow");
-                }
+        // for (int i = 0; i < healthOrbs.Length; i++)
+        // {
+        //     if (hp > i)
+        //     {
+        //         if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == false)
+        //         {
+        //             // print("new orb");
+        //             healthOrbs[i].gameObject.GetComponent<Animator>().SetTrigger("grow");
+        //         }
 
-                healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            } else if (hp <= i)
-            {
-                if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == true)
-                {
-                    var prefab = Instantiate(hpEffect, healthOrbs[i].gameObject.transform.position, healthOrbs[i].gameObject.transform.rotation);
-                    prefab.transform.parent = healthOrbs[i].gameObject.transform;
-                    Destroy(prefab, 1f);
-                }
-                healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
-        }
+        //         healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        //     }
+        //     else if (hp <= i)
+        //     {
+        //         if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == true)
+        //         {
+        //             var prefab = Instantiate(hpEffect, healthOrbs[i].gameObject.transform.position, healthOrbs[i].gameObject.transform.rotation);
+        //             prefab.transform.parent = healthOrbs[i].gameObject.transform;
+        //             Destroy(prefab, 1f);
+        //         }
+        //         healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //     }
+        // }
 
         // Prototype text that we don't use
         // text.text = "HP: " + hp + "/" + maxHp;
@@ -101,44 +98,52 @@ public class damagePlayer : MonoBehaviour
 
     public void recieveDamage()
     {
-        if (hp > 0 && isMortal == true && !shieldOn || instantDeath == true)
+        if (_character.IsGuardian)
         {
-
-            hp--;
-            isMortal = false;
-            Invoke("becomeMortal", 1f);
-            FindObjectOfType<CameraScript>().gotHit();
-            FindObjectOfType<modeSelector>().uiAnim.SetBool("isOn", false);
-            FindObjectOfType<modeSelector>().wheelUp = false;
-            FindObjectOfType<character>().playerAnim.SetTrigger("hurt");
-
-            Time.timeScale = 0.2f;
-            Invoke("fixTime", 0.2f/5f);
-
-            var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
-            Destroy(prefab, 4);
-
-            if(dashScript.dashTime < dashScript.startDashTime)
+            if (hp > 0 && isMortal == true && !shieldOn || instantDeath == true)
             {
-                dashScript.enemyCollided();
-            }
+                hp--;
+                // isMortal = false;
+                // Invoke("becomeMortal", 1f);
+                FindObjectOfType<CameraScript>().gotHit();
+                FindObjectOfType<modeSelector>().uiAnim.SetBool("isOn", false);
+                FindObjectOfType<modeSelector>().wheelUp = false;
+                _character.playerAnim.SetTrigger("hurt");
 
-            if (hp == 0)
-            {
-                instantDeath = false;
-                deathAnim.SetBool("isDead", true);
-                isDead = true;
-                FindObjectOfType<character>().enabled = false;
+                // Time.timeScale = 0.2f;
+                // Invoke("fixTime", 0.2f / 5f);
+
+                var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
+                Destroy(prefab, 2);
+
+                if (dashScript.dashTime < dashScript.startDashTime)
+                {
+                    dashScript.enemyCollided();
+                }
+
+                if (hp == 0)
+                {
+                    instantDeath = false;
+                    deathAnim.SetBool("isDead", true);
+                    isDead = true;
+                    _character.enabled = false;
+                }
             }
         }
-
+        else
+        {
+            if (hp > 0)
+            {
+                hp--;
+            }
+        }
     }
 
     void fixTime()
     {
         Time.timeScale = 1;
     }
-    
+
 
     public void recieveHealth()
     {
@@ -151,37 +156,23 @@ public class damagePlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 14 || collision.gameObject.layer == 11 || collision.gameObject.layer == 19)
+        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 14 || collision.gameObject.layer == 11 || collision.gameObject.layer == 19 || collision.gameObject.layer == 15) && collision.transform != transform.GetChild(0).transform.GetChild(0))
         {
             if (isMortal && !shieldOn)
             {
                 recieveDamage();
-                if (this.transform.position.x <= collision.transform.position.x)
-                {
-                    rb.velocity = new Vector2(-6, 6);
-                }
-                else if (this.transform.position.x > collision.transform.position.x)
-                {
-                    rb.velocity = new Vector2(6, 6);
-                }
-            } else if(isMortal && shieldOn)
+            }
+            else if (isMortal && shieldOn)
             {
-                if (this.transform.position.x <= collision.transform.position.x)
-                {
-                    rb.velocity = new Vector2(-4, 3);
-                }
-                else if (this.transform.position.x > collision.transform.position.x)
-                {
-                    rb.velocity = new Vector2(4, 3);
-                }
+
             }
         }
-        else if(collision.gameObject.layer == 18)
+        else if (collision.gameObject.layer == 18)
         {
             hp = 1;
             instantDeath = true;
@@ -191,7 +182,7 @@ public class damagePlayer : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        if(other.gameObject.layer == 11)
+        if (other.gameObject.layer == 11)
         {
             if (isMortal)
             {

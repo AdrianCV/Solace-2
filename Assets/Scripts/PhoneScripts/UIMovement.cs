@@ -57,11 +57,11 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         isPressed = true;
     }
+
     public void OnPointerUp(PointerEventData data)
     {
         isPressed = false;
         view.GetComponent<character>().MoveInput = 0;
-
     }
 
     public void Jump()
@@ -70,6 +70,18 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         {
             _player.jump();
             print(_player.gameObject.name);
+        }
+    }
+
+    public void Attack()
+    {
+        if (_player.IsGuardian)
+        {
+            _player.GetComponent<parryAttack>().hit();
+        }
+        else
+        {
+            _player.playerAnim.SetTrigger("attacking");
         }
     }
 }

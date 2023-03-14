@@ -36,11 +36,11 @@ public class parryAttack : MonoBehaviour
         Gizmos.DrawWireSphere(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize);
     }
 
-    public void hit(InputAction.CallbackContext context)
+    public void hit()
     {
         Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize, enemyLayer);
 
-        if (GetComponent<parryAttack>().enabled == true && context.started && cooldownActive == false)
+        if (GetComponent<parryAttack>().enabled == true && cooldownActive == false)
         {
             hitAnim.GetComponent<Animator>().SetTrigger("hit");
             hitAnim.GetComponent<AudioSource>().Play();
@@ -55,20 +55,20 @@ public class parryAttack : MonoBehaviour
             {
                 enemyFound = true;
                 // Hits enemies
-                if (fiend.GetComponent<EnemyDamageTaken>() != null && fiend.isTrigger)
+                if (fiend.GetComponent<damagePlayer>() != null)
                 {
-                    fiend.GetComponent<EnemyDamageTaken>().recieveDamage(1);
+                    fiend.GetComponent<damagePlayer>().recieveDamage();
                     // print(fiend.gameObject.name);
                     var prefab = Instantiate(soul, fiend.transform.position, fiend.transform.rotation);
                     // FindObjectOfType<energyController>().recieveEnergy();
-                    if (this.transform.position.x < fiend.transform.position.x)
-                    {
-                        fiend.GetComponent<EnemyDamageTaken>().hDir = 1;
-                    }
-                    else if (this.transform.position.x > fiend.transform.position.x)
-                    {
-                        fiend.GetComponent<EnemyDamageTaken>().hDir = -1;
-                    }
+                    // if (this.transform.position.x < fiend.transform.position.x)
+                    // {
+                    //     fiend.GetComponent<damagePlayer>().hDir = 1;
+                    // }
+                    // else if (this.transform.position.x > fiend.transform.position.x)
+                    // {
+                    //     fiend.GetComponent<damagePlayer>().hDir = -1;
+                    // }
                 }
             }
 
@@ -82,10 +82,11 @@ public class parryAttack : MonoBehaviour
                     items.GetComponent<Destroyable>().destroyObject();
                 }
                 // If it's a lever:
-                if(items.GetComponent<LiftLever>() != null)
+                if (items.GetComponent<LiftLever>() != null)
                 {
                     items.GetComponent<LiftLever>().trigger();
-                } else if(items.GetComponent<Lever>() != null)
+                }
+                else if (items.GetComponent<Lever>() != null)
                 {
                     items.GetComponent<Lever>().trigger();
                 }
@@ -171,11 +172,11 @@ public class parryAttack : MonoBehaviour
 
         */
 
-        if(this.transform.GetComponent<character>().looking == -1)
+        if (this.transform.GetComponent<character>().looking == -1)
         {
             shield.transform.localPosition = new Vector2(-Mathf.Abs(shieldLocation), 0);
             attackArea = new Vector2(-Mathf.Abs(attackArea.x), -0.15f);
-        } 
+        }
         else
         {
             shield.transform.localPosition = new Vector2(Mathf.Abs(shieldLocation), 0);

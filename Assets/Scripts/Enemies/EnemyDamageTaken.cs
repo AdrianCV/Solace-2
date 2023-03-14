@@ -55,9 +55,9 @@ public class EnemyDamageTaken : MonoBehaviour
             // Death
             if (hp <= 0)
             {
-                
+
                 isDead = true;
-                if(damager != null)
+                if (damager != null)
                 {
                     damager.enabled = false;
                 }
@@ -67,7 +67,8 @@ public class EnemyDamageTaken : MonoBehaviour
                     enemyAnimator.SetBool("dead", true);
                     Invoke("spawnHeart", deathTime);
                     Destroy(enemyToDie.gameObject, deathTime);
-                } else
+                }
+                else
                 {
                     Invoke("spawnHeart", 0);
                     Destroy(enemyToDie.gameObject);
