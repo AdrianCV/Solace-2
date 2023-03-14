@@ -10,7 +10,7 @@ public class hoverPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = FindObjectOfType<character>().playerAnim;
+        playerAnim = transform.parent.GetComponent<character>().playerAnim;
         hoverAnim = GetComponent<Animator>();
     }
 
