@@ -555,8 +555,7 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6802349869993469424, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
 --- !u!1001 &2103216898
@@ -571,13 +570,13 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5734929817429010061, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: orthographic size
-      value: 5.625
-      objectReference: {fileID: 0}
     - target: {fileID: 5790027306584472616, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: m_Name
       value: IceClown
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790027306584472616, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5790027306584472617, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: m_RootOrder
@@ -622,30 +621,6 @@ PrefabInstance:
     - target: {fileID: 5790027306584472617, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeLayers.Array.data[0].SynchronizeType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[2].SynchronizeType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[3].SynchronizeType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214354607007751993, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[4].SynchronizeType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8229437124340405837, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: sceneViewId

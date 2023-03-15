@@ -277,10 +277,12 @@ public class character : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(SavedInput);
+            stream.SendNext(MoveInput);
         }
         else
         {
             SavedInput = (int)stream.ReceiveNext();
+            MoveInput = (float)stream.ReceiveNext();
         }
     }
 }

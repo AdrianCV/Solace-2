@@ -36,7 +36,7 @@ public class damagePlayer : MonoBehaviour
 
         _character = GetComponent<character>();
 
-        _damageBox = transform.GetChild(0).GetChild(0).gameObject;
+        // _damageBox = transform.GetChild(0).GetChild(0).gameObject;
     }
 
     public void enterDown(InputAction.CallbackContext context)
@@ -148,17 +148,10 @@ public class damagePlayer : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("collision");
         if (collision.tag == "EnemyWeapon" && collision.gameObject != _damageBox)
         {
-            print("Should take damage");
             recieveDamage();
         }
         else if (collision.gameObject.layer == 18)

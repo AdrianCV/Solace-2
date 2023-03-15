@@ -162,6 +162,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: attacking
+  - Type: 3
+    SynchronizeType: 1
+    Name: speed
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -609,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee92861f02f24d48a1f129a8ffca105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  damageTaken: 0
   maxHp: 5
   hitEffect: {fileID: 7111067520612749463, guid: 6f52278c462af2b4493ce8e0b11e6670, type: 3}
   deathAnim: {fileID: 928406103804344205}

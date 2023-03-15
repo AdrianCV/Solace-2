@@ -46,57 +46,37 @@ public class parryAttack : MonoBehaviour
             hitAnim.GetComponent<Animator>().SetTrigger("hit");
             hitAnim.GetComponent<AudioSource>().Play();
             cooldownActive = true;
-            shield.SetActive(true);
+            // shield.SetActive(true);
             Invoke("closeShield", upTime);
             Invoke("endCool", coolDown);
 
-            bool enemyFound = false;
+            // bool enemyFound = false;
 
-            foreach (Collider2D fiend in enemyColliders)
-            {
-                enemyFound = true;
-                // Hits enemies
-                if (fiend.GetComponent<damagePlayer>() != null)
-                {
-                    fiend.GetComponent<damagePlayer>().recieveDamage();
-                    // print(fiend.gameObject.name);
-                    var prefab = Instantiate(soul, fiend.transform.position, fiend.transform.rotation);
-                    // FindObjectOfType<energyController>().recieveEnergy();
-                    // if (this.transform.position.x < fiend.transform.position.x)
-                    // {
-                    //     fiend.GetComponent<damagePlayer>().hDir = 1;
-                    // }
-                    // else if (this.transform.position.x > fiend.transform.position.x)
-                    // {
-                    //     fiend.GetComponent<damagePlayer>().hDir = -1;
-                    // }
-                }
-            }
+            // foreach (Collider2D fiend in enemyColliders)
+            // {
+            //     enemyFound = true;
+            //     // Hits enemies
+            //     if (fiend.GetComponent<damagePlayer>() != null)
+            //     {
+            //         fiend.GetComponent<damagePlayer>().recieveDamage();
+            //         // print(fiend.gameObject.name);
+            //         var prefab = Instantiate(soul, fiend.transform.position, fiend.transform.rotation);
+            //         // FindObjectOfType<energyController>().recieveEnergy();
+            //         // if (this.transform.position.x < fiend.transform.position.x)
+            //         // {
+            //         //     fiend.GetComponent<damagePlayer>().hDir = 1;
+            //         // }
+            //         // else if (this.transform.position.x > fiend.transform.position.x)
+            //         // {
+            //         //     fiend.GetComponent<damagePlayer>().hDir = -1;
+            //         // }
+            //     }
+            // }
 
-            // Hits object that you can destroy
-            Collider2D[] itemColliders = Physics2D.OverlapCircleAll(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize, itemLayer);
-            foreach (Collider2D items in itemColliders)
-            {
-                enemyFound = true;
-                if (items.GetComponent<Destroyable>() != null)
-                {
-                    items.GetComponent<Destroyable>().destroyObject();
-                }
-                // If it's a lever:
-                if (items.GetComponent<LiftLever>() != null)
-                {
-                    items.GetComponent<LiftLever>().trigger();
-                }
-                else if (items.GetComponent<Lever>() != null)
-                {
-                    items.GetComponent<Lever>().trigger();
-                }
-            }
-
-            if (enemyFound)
-            {
-                FindObjectOfType<CameraScript>().dealDamage();
-            }
+            // if (enemyFound)
+            // {
+            //     FindObjectOfType<CameraScript>().dealDamage();
+            // }
 
             // flips the animations thingy
 
