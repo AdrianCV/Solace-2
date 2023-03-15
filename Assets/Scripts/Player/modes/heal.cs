@@ -20,7 +20,7 @@ public class heal : MonoBehaviour
     {
         if (this.enabled)
         {
-            if (context.started && this.enabled == true && energyScript.energy > 3 && healthScript.hp < 5 )
+            if (context.started && this.enabled == true && energyScript.energy > 3 && healthScript.damageTaken < 5)
             {
                 //print("start");
                 StartCoroutine(chargeHeal());

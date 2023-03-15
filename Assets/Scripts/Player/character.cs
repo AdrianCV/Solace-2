@@ -19,12 +19,13 @@ public class character : MonoBehaviour, IPunObservable
     public LayerMask groundLayer;
     private bool shockShieldOn;
     public float heightOffset = 0.25f;
-    public float looking = 1;
+    public bool lookingLeft = false;
 
     private float startHeight = 10000;
     public float jumpHeight = 4;
 
     [HideInInspector] public float MoveInput;
+    [HideInInspector] public int SavedInput = 1;
 
     public SpriteRenderer stickRender;
     public Animator playerAnim;
@@ -68,6 +69,8 @@ public class character : MonoBehaviour, IPunObservable
 
     void Update()
     {
+        transform.GetChild(0).localScale = new Vector3(SavedInput, 1, 1);
+
         if (view.IsMine)
         {// MoveInput = Input.GetAxis("Horizontal");
             playerAnim.SetBool("grounded", grounded);
@@ -112,15 +115,15 @@ public class character : MonoBehaviour, IPunObservable
             // {
             if (MoveInput < 0)
             {
-                stickRender.flipX = true;
-                looking = -1;
+                // stickRender.flipX = true;
+                lookingLeft = true;
                 playerAnim.SetBool("running", true);
             }
             // Moving right
             if (MoveInput > 0)
             {
-                stickRender.flipX = false;
-                looking = 1;
+                // stickRender.flipX = false;
+                lookingLeft = false;
                 playerAnim.SetBool("running", true);
             }
             // }
@@ -162,6 +165,7 @@ public class character : MonoBehaviour, IPunObservable
         {
             _cam.gameObject.SetActive(false);
             gameObject.layer = 11;
+            gameObject.tag = "Enemy";
         }
     }
 
@@ -203,13 +207,13 @@ public class character : MonoBehaviour, IPunObservable
         {
             onWall = true;
             stickRender.flipX = false;
-            looking = 1;
+            lookingLeft = true;
         }
         else if (Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.right, wallDistance, groundLayer) && !grounded)
         {
             onWall = true;
             stickRender.flipX = true;
-            looking = -1;
+            lookingLeft = false;
         }
         else
         {
@@ -249,10 +253,14 @@ public class character : MonoBehaviour, IPunObservable
 
     private void FixedUpdate()
     {
-        if (!isSitting)
+        if (!isSitting && MoveInput != 0)
         {
             transform.position += Vector3.right * MoveInput * speed;
-            playerAnim.SetFloat("speed", MoveInput);
+            playerAnim.SetInteger("speed", (int)MoveInput);
+        }
+        else
+        {
+            playerAnim.SetInteger("speed", 0);
         }
     }
 
@@ -268,12 +276,11 @@ public class character : MonoBehaviour, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(stickRender.flipX);
-            // stream.SendNext(playerAnim);
+            stream.SendNext(SavedInput);
         }
         else
         {
-            stickRender.flipX = (bool)stream.ReceiveNext();
+            SavedInput = (int)stream.ReceiveNext();
         }
     }
 }

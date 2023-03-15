@@ -17,7 +17,7 @@ public class checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,10 +41,10 @@ public class checkpoint : MonoBehaviour
         {
             thisTriggered = true;
             FindObjectOfType<thisIsSoICanFindIt>().gameObject.GetComponent<Animator>().SetBool("checkFade", true);
-            FindObjectOfType<damagePlayer>().hp = FindObjectOfType<damagePlayer>().maxHp;
-            if(lastLevel == true)
+            FindObjectOfType<damagePlayer>().damageTaken = FindObjectOfType<damagePlayer>().maxHp;
+            if (lastLevel == true)
             {
-                FindObjectOfType<damagePlayer>().hp = 4;
+                FindObjectOfType<damagePlayer>().damageTaken = 4;
             }
             // FindObjectOfType<energyController>().energy = FindObjectOfType<energyController>().maxEnergy;
             FindObjectOfType<character>().playerAnim.SetBool("sitting", true);

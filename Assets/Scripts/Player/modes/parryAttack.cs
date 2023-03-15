@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class parryAttack : MonoBehaviour
 {
@@ -99,7 +100,7 @@ public class parryAttack : MonoBehaviour
 
             // flips the animations thingy
 
-            if (this.GetComponent<character>().looking == 1)
+            if (!this.GetComponent<character>().stickRender.flipX)
             {
                 hitAnim.GetComponent<SpriteRenderer>().flipX = false;
                 hitAnim.transform.localPosition = new Vector3(0.87f, 0.18f, 0);
@@ -172,7 +173,7 @@ public class parryAttack : MonoBehaviour
 
         */
 
-        if (this.transform.GetComponent<character>().looking == -1)
+        if (this.transform.GetComponent<character>().stickRender.flipX)
         {
             shield.transform.localPosition = new Vector2(-Mathf.Abs(shieldLocation), 0);
             attackArea = new Vector2(-Mathf.Abs(attackArea.x), -0.15f);

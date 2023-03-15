@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
+using Photon.Pun;
 
 public class damagePlayer : MonoBehaviour
 {
-    public float hp = 5;
+    public float damageTaken = 0;
     public float maxHp;
     private Rigidbody2D rb;
     public GameObject hitEffect;
@@ -24,14 +25,18 @@ public class damagePlayer : MonoBehaviour
 
     private character _character;
 
+    [SerializeField] private GameObject _damageBox;
+
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = hp;
+        maxHp = damageTaken;
         rb = this.GetComponent<Rigidbody2D>();
         dashScript = FindObjectOfType<dashMove>();
 
         _character = GetComponent<character>();
+
+        _damageBox = transform.GetChild(0).GetChild(0).gameObject;
     }
 
     public void enterDown(InputAction.CallbackContext context)
@@ -84,10 +89,10 @@ public class damagePlayer : MonoBehaviour
         if (isDead && enterIn)
         {
             // Destroy(FindObjectOfType<dontDestroy>().gameObject);
-            SceneManager.LoadScene(FindObjectOfType<checkSaver>().lastCheckScene);
-            transform.position = FindObjectOfType<checkSaver>().lastCheckPoint;
+            // SceneManager.LoadScene(FindObjectOfType<checkSaver>().lastCheckScene);
+            // transform.position = FindObjectOfType<checkSaver>().lastCheckPoint;
             GetComponent<energyController>().energy = GetComponent<energyController>().maxEnergy;
-            hp = maxHp;
+            damageTaken = maxHp;
             deathAnim.SetBool("isDead", false);
             FindObjectOfType<character>().enabled = true;
             isDead = false;
@@ -98,43 +103,32 @@ public class damagePlayer : MonoBehaviour
 
     public void recieveDamage()
     {
+        damageTaken++;
+
+        var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
+        Destroy(prefab, 2);
+
+        _character.playerAnim.SetTrigger("hurt");
+
+
         if (_character.IsGuardian)
         {
-            if (hp > 0 && isMortal == true && !shieldOn || instantDeath == true)
+            if (!shieldOn)
             {
-                hp--;
                 // isMortal = false;
                 // Invoke("becomeMortal", 1f);
-                FindObjectOfType<CameraScript>().gotHit();
                 FindObjectOfType<modeSelector>().uiAnim.SetBool("isOn", false);
                 FindObjectOfType<modeSelector>().wheelUp = false;
-                _character.playerAnim.SetTrigger("hurt");
 
                 // Time.timeScale = 0.2f;
                 // Invoke("fixTime", 0.2f / 5f);
 
-                var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
-                Destroy(prefab, 2);
+
 
                 if (dashScript.dashTime < dashScript.startDashTime)
                 {
                     dashScript.enemyCollided();
                 }
-
-                if (hp == 0)
-                {
-                    instantDeath = false;
-                    deathAnim.SetBool("isDead", true);
-                    isDead = true;
-                    _character.enabled = false;
-                }
-            }
-        }
-        else
-        {
-            if (hp > 0)
-            {
-                hp--;
             }
         }
     }
@@ -147,10 +141,10 @@ public class damagePlayer : MonoBehaviour
 
     public void recieveHealth()
     {
-        hp++;
-        if (hp > maxHp)
+        damageTaken--;
+        if (damageTaken < maxHp)
         {
-            hp = maxHp;
+            damageTaken = maxHp;
         }
     }
 
@@ -161,20 +155,15 @@ public class damagePlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.layer == 8 || collision.gameObject.layer == 14 || collision.gameObject.layer == 11 || collision.gameObject.layer == 19 || collision.gameObject.layer == 15) && collision.transform != transform.GetChild(0).transform.GetChild(0))
+        print("collision");
+        if (collision.tag == "EnemyWeapon" && collision.gameObject != _damageBox)
         {
-            if (isMortal && !shieldOn)
-            {
-                recieveDamage();
-            }
-            else if (isMortal && shieldOn)
-            {
-
-            }
+            print("Should take damage");
+            recieveDamage();
         }
         else if (collision.gameObject.layer == 18)
         {
-            hp = 1;
+            damageTaken = 1;
             instantDeath = true;
             recieveDamage();
         }

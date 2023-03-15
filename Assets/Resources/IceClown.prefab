@@ -148,22 +148,22 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: running
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: hurt
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: throw
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: idle
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: attacking
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!1 &993090250629722783
 GameObject:
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 4280340610412273469}
   m_Layer: 8
   m_Name: swordCollider
-  m_TagString: Untagged
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -587,9 +587,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   heightOffset: -0.85
-  looking: 1
+  lookingLeft: 0
   jumpHeight: 4
   MoveInput: 0
+  SavedInput: 1
   stickRender: {fileID: 928406103804344204}
   playerAnim: {fileID: 928406103804344205}
   isSitting: 0
@@ -615,6 +616,7 @@ MonoBehaviour:
   isDead: 0
   isMortal: 1
   shieldOn: 0
+  _damageBox: {fileID: 4280340610412273459}
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4
@@ -681,9 +683,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 5790027306584472622}
   - {fileID: 6018666554351436320}
   - {fileID: 1586497779}
-  - {fileID: 6214354607007751993}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

@@ -51,8 +51,15 @@ public class dashMove : MonoBehaviour
 
     void Update()
     {
-        // Gets the direction of the player
-        playerLooking = FindObjectOfType<character>().looking;
+        if (!GetComponent<character>().stickRender.flipX)
+        {
+            playerLooking = -1;
+        }
+        else
+        {
+            playerLooking = 1;
+        }
+
 
         //Makes it so the player gains dash when grounded
         if (FindObjectOfType<character>().grounded)
