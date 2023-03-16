@@ -7284,6 +7284,7 @@ MonoBehaviour:
   wallDistance: 0.4
   IsGuardian: 1
   _cam: {fileID: 1162901863281525767}
+  view: {fileID: 0}
 --- !u!114 &1162901863548322191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7304,6 +7305,7 @@ MonoBehaviour:
   isMortal: 1
   shieldOn: 0
   _damageBox: {fileID: 1162901863410819978}
+  uiDamage: {fileID: 0}
 --- !u!114 &1162901863548322184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7575,6 +7577,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1162901863548322190}
+  - {fileID: 1162901863548322191}
   - {fileID: 1259823055342042229}
   - {fileID: 1903467759}
   - {fileID: 4290166983620623706}

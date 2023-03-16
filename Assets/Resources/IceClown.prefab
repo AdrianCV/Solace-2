@@ -600,6 +600,7 @@ MonoBehaviour:
   wallDistance: 0.325
   IsGuardian: 0
   _cam: {fileID: 5734929817429010061}
+  view: {fileID: 0}
 --- !u!114 &2114141836855100458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +621,7 @@ MonoBehaviour:
   isMortal: 1
   shieldOn: 0
   _damageBox: {fileID: 4280340610412273459}
+  uiDamage: {fileID: 0}
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4

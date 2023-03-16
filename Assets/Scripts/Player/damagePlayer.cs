@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class damagePlayer : MonoBehaviour
+public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float damageTaken = 0;
     public float maxHp;
@@ -27,6 +29,15 @@ public class damagePlayer : MonoBehaviour
 
     [SerializeField] private GameObject _damageBox;
 
+    public UIDamage uiDamage;
+
+    private const byte DAMAGE_EVENT = 0;
+
+    private GameObject _otherPlayer;
+
+    private GameObject ui;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +47,14 @@ public class damagePlayer : MonoBehaviour
 
         _character = GetComponent<character>();
 
-        // _damageBox = transform.GetChild(0).GetChild(0).gameObject;
+
+        if (_character.view.IsMine)
+        {
+            ui = GameObject.FindGameObjectWithTag("Canvas");
+
+
+            uiDamage = ui.transform.GetChild(PhotonNetwork.PlayerList.Length - 1).GetComponent<UIDamage>();
+        }
     }
 
     public void enterDown(InputAction.CallbackContext context)
@@ -54,36 +72,24 @@ public class damagePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Old alpha bar that we don't use
-        // hpBar.barSlider.value = hp;
-
-        // Logic for which orbs appear
-        // for (int i = 0; i < healthOrbs.Length; i++)
-        // {
-        //     if (hp > i)
-        //     {
-        //         if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == false)
-        //         {
-        //             // print("new orb");
-        //             healthOrbs[i].gameObject.GetComponent<Animator>().SetTrigger("grow");
-        //         }
-
-        //         healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        //     }
-        //     else if (hp <= i)
-        //     {
-        //         if (healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled == true)
-        //         {
-        //             var prefab = Instantiate(hpEffect, healthOrbs[i].gameObject.transform.position, healthOrbs[i].gameObject.transform.rotation);
-        //             prefab.transform.parent = healthOrbs[i].gameObject.transform;
-        //             Destroy(prefab, 1f);
-        //         }
-        //         healthOrbs[i].gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        //     }
-        // }
-
         // Prototype text that we don't use
         // text.text = "HP: " + hp + "/" + maxHp;
+
+        if (_character.view.IsMine)
+        {
+            _otherPlayer = GameObject.FindGameObjectWithTag("Enemy");
+
+            if (_otherPlayer != null)
+            {
+                foreach (Transform child in ui.transform)
+                {
+                    if (child.GetComponent<UIDamage>() != uiDamage)
+                    {
+                        _otherPlayer.GetComponent<damagePlayer>().uiDamage = child.GetComponent<UIDamage>();
+                    }
+                }
+            }
+        }
 
         // Respawn
         if (isDead && enterIn)
@@ -104,6 +110,8 @@ public class damagePlayer : MonoBehaviour
     public void recieveDamage()
     {
         damageTaken++;
+        PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendUnreliable);
+
 
         var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
         Destroy(prefab, 2);
@@ -184,5 +192,37 @@ public class damagePlayer : MonoBehaviour
     void becomeMortal()
     {
         isMortal = true;
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventRecieved;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventRecieved;
+    }
+
+    private void NetworkingClient_EventRecieved(EventData obj)
+    {
+        if (obj.Code == DAMAGE_EVENT)
+        {
+            uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(damageTaken);
+        }
+        else
+        {
+            damageTaken = (float)stream.ReceiveNext();
+        }
     }
 }

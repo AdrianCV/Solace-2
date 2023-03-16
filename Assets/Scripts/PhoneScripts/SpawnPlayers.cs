@@ -22,6 +22,8 @@ public class SpawnPlayers : MonoBehaviour
 
         // if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         // {
-        PhotonNetwork.Instantiate(preName, new Vector2(0, 0), Quaternion.identity);
+
+        var player = PhotonNetwork.Instantiate(preName, new Vector2(0, 0), Quaternion.identity);
+
     }
 }

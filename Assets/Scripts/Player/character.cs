@@ -37,7 +37,7 @@ public class character : MonoBehaviour, IPunObservable
     public bool IsGuardian;
     [SerializeField] private Camera _cam;
 
-    PhotonView view;
+    public PhotonView view;
 
 
     private void Start()
