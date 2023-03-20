@@ -11,6 +11,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     [SerializeField] private bool isPressed;
 
     [SerializeField] private bool isLeft;
+    [SerializeField] private bool isUp;
 
     private character _player;
     // Start is called before the first frame update
@@ -27,7 +28,6 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         if (view.IsMine)
         {
-            print(view.gameObject.name);
             view.GetComponent<character>().MoveInput = -1;
             view.GetComponent<character>().SavedInput = -1;
         }
@@ -37,9 +37,16 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         if (view.IsMine)
         {
-            print(view.gameObject.name);
             view.GetComponent<character>().MoveInput = 1;
             view.GetComponent<character>().SavedInput = 1;
+        }
+    }
+
+    public void LookUp()
+    {
+        if (view.IsMine)
+        {
+            view.GetComponent<character>().LookInput = 1;
         }
     }
 
@@ -51,6 +58,10 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
             {
                 MoveLeft();
                 // view.RPC("MoveLeft", RpcTarget.Others);
+            }
+            else if (isUp)
+            {
+                LookUp();
             }
             else
             {
@@ -67,6 +78,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         isPressed = false;
         view.GetComponent<character>().MoveInput = 0;
+        view.GetComponent<character>().LookInput = 0;
     }
 
     public void Jump()

@@ -24,15 +24,16 @@ public class character : MonoBehaviour, IPunObservable
     private float startHeight = 10000;
     public float jumpHeight = 4;
 
-    [HideInInspector] public float MoveInput;
-    [HideInInspector] public int SavedInput = 1;
-
     public SpriteRenderer stickRender;
     public Animator playerAnim;
     public bool isSitting = false;
     [SerializeField] private float wallDistance = 0.325f;
 
     private IEnumerator coroutine;
+
+    [HideInInspector] public float MoveInput;
+    [HideInInspector] public int SavedInput = 1;
+    [HideInInspector] public int LookInput;
 
     public bool IsGuardian;
     [SerializeField] private Camera _cam;
@@ -241,7 +242,18 @@ public class character : MonoBehaviour, IPunObservable
 
     public void IceClownAttack()
     {
-        playerAnim.SetTrigger("attacking");
+        if (LookInput == 0 && MoveInput == 0)
+        {
+            playerAnim.SetTrigger("attacking");
+        }
+        else if (MoveInput != 0)
+        {
+
+        }
+        else if (LookInput != 0)
+        {
+
+        }
     }
 
     private void OnDrawGizmos()

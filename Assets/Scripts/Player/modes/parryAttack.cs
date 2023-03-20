@@ -39,56 +39,59 @@ public class parryAttack : MonoBehaviour
 
     public void hit()
     {
-        Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize, enemyLayer);
-
-        if (GetComponent<parryAttack>().enabled == true && cooldownActive == false)
+        if (GetComponent<character>().MoveInput == 0 && GetComponent<character>().LookInput == 0)
         {
-            hitAnim.GetComponent<Animator>().SetTrigger("hit");
-            hitAnim.GetComponent<AudioSource>().Play();
-            cooldownActive = true;
-            // shield.SetActive(true);
-            Invoke("closeShield", upTime);
-            Invoke("endCool", coolDown);
+            Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize, enemyLayer);
 
-            // bool enemyFound = false;
-
-            // foreach (Collider2D fiend in enemyColliders)
-            // {
-            //     enemyFound = true;
-            //     // Hits enemies
-            //     if (fiend.GetComponent<damagePlayer>() != null)
-            //     {
-            //         fiend.GetComponent<damagePlayer>().recieveDamage();
-            //         // print(fiend.gameObject.name);
-            //         var prefab = Instantiate(soul, fiend.transform.position, fiend.transform.rotation);
-            //         // FindObjectOfType<energyController>().recieveEnergy();
-            //         // if (this.transform.position.x < fiend.transform.position.x)
-            //         // {
-            //         //     fiend.GetComponent<damagePlayer>().hDir = 1;
-            //         // }
-            //         // else if (this.transform.position.x > fiend.transform.position.x)
-            //         // {
-            //         //     fiend.GetComponent<damagePlayer>().hDir = -1;
-            //         // }
-            //     }
-            // }
-
-            // if (enemyFound)
-            // {
-            //     FindObjectOfType<CameraScript>().dealDamage();
-            // }
-
-            // flips the animations thingy
-
-            if (!this.GetComponent<character>().stickRender.flipX)
+            if (GetComponent<parryAttack>().enabled == true && cooldownActive == false)
             {
-                hitAnim.GetComponent<SpriteRenderer>().flipX = false;
-                hitAnim.transform.localPosition = new Vector3(0.87f, 0.18f, 0);
-            }
-            else
-            {
-                hitAnim.GetComponent<SpriteRenderer>().flipX = true;
-                hitAnim.transform.localPosition = new Vector3(-0.87f, 0.18f, 0);
+                hitAnim.GetComponent<Animator>().SetTrigger("hit");
+                hitAnim.GetComponent<AudioSource>().Play();
+                cooldownActive = true;
+                // shield.SetActive(true);
+                Invoke("closeShield", upTime);
+                Invoke("endCool", coolDown);
+
+                // bool enemyFound = false;
+
+                // foreach (Collider2D fiend in enemyColliders)
+                // {
+                //     enemyFound = true;
+                //     // Hits enemies
+                //     if (fiend.GetComponent<damagePlayer>() != null)
+                //     {
+                //         fiend.GetComponent<damagePlayer>().recieveDamage();
+                //         // print(fiend.gameObject.name);
+                //         var prefab = Instantiate(soul, fiend.transform.position, fiend.transform.rotation);
+                //         // FindObjectOfType<energyController>().recieveEnergy();
+                //         // if (this.transform.position.x < fiend.transform.position.x)
+                //         // {
+                //         //     fiend.GetComponent<damagePlayer>().hDir = 1;
+                //         // }
+                //         // else if (this.transform.position.x > fiend.transform.position.x)
+                //         // {
+                //         //     fiend.GetComponent<damagePlayer>().hDir = -1;
+                //         // }
+                //     }
+                // }
+
+                // if (enemyFound)
+                // {
+                //     FindObjectOfType<CameraScript>().dealDamage();
+                // }
+
+                // flips the animations thingy
+
+                if (!this.GetComponent<character>().stickRender.flipX)
+                {
+                    hitAnim.GetComponent<SpriteRenderer>().flipX = false;
+                    hitAnim.transform.localPosition = new Vector3(0.87f, 0.18f, 0);
+                }
+                else
+                {
+                    hitAnim.GetComponent<SpriteRenderer>().flipX = true;
+                    hitAnim.transform.localPosition = new Vector3(-0.87f, 0.18f, 0);
+                }
             }
         }
     }
