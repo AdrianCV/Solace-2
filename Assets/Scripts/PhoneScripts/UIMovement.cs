@@ -27,6 +27,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         if (view.IsMine)
         {
+            print(view.gameObject.name);
             view.GetComponent<character>().MoveInput = -1;
             view.GetComponent<character>().SavedInput = -1;
         }
@@ -36,6 +37,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     {
         if (view.IsMine)
         {
+            print(view.gameObject.name);
             view.GetComponent<character>().MoveInput = 1;
             view.GetComponent<character>().SavedInput = 1;
         }
@@ -84,20 +86,20 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         }
         else
         {
-            _player.playerAnim.SetTrigger("attacking");
+            _player.IceClownAttack();
         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(view.GetComponent<character>().SavedInput);
-        }
-        else
-        {
-            view.GetComponent<character>().SavedInput = (int)stream.ReceiveNext();
-        }
+        // if (stream.IsWriting)
+        // {
+        //     stream.SendNext(view.GetComponent<character>().SavedInput);
+        // }
+        // else
+        // {
+        //     view.GetComponent<character>().SavedInput = (int)stream.ReceiveNext();
+        // }
     }
 }
 

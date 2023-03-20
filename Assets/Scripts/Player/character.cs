@@ -239,6 +239,11 @@ public class character : MonoBehaviour, IPunObservable
         }*/
     }
 
+    public void IceClownAttack()
+    {
+        playerAnim.SetTrigger("attacking");
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
