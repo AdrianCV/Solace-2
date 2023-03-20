@@ -12,6 +12,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
 
     [SerializeField] private bool isLeft;
     [SerializeField] private bool isUp;
+    [SerializeField] private bool isDown;
 
     private character _player;
     // Start is called before the first frame update
@@ -26,46 +27,52 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
 
     public void MoveLeft()
     {
-        if (view.IsMine)
-        {
-            view.GetComponent<character>().MoveInput = -1;
-            view.GetComponent<character>().SavedInput = -1;
-        }
+
+        view.GetComponent<character>().MoveInput = -1;
+        view.GetComponent<character>().SavedInput = -1;
     }
 
     public void MoveRight()
     {
-        if (view.IsMine)
-        {
-            view.GetComponent<character>().MoveInput = 1;
-            view.GetComponent<character>().SavedInput = 1;
-        }
+
+        view.GetComponent<character>().MoveInput = 1;
+        view.GetComponent<character>().SavedInput = 1;
     }
 
     public void LookUp()
     {
-        if (view.IsMine)
-        {
-            view.GetComponent<character>().LookInput = 1;
-        }
+
+        view.GetComponent<character>().LookInput = 1;
+    }
+
+    public void LookDown()
+    {
+        view.GetComponent<character>().LookInput = -1;
     }
 
     public void OnUpdateSelected(BaseEventData data)
     {
-        if (isPressed)
+        if (view.IsMine)
         {
-            if (isLeft)
+            if (isPressed)
             {
-                MoveLeft();
-                // view.RPC("MoveLeft", RpcTarget.Others);
-            }
-            else if (isUp)
-            {
-                LookUp();
-            }
-            else
-            {
-                MoveRight();
+                if (isLeft)
+                {
+                    MoveLeft();
+                    // view.RPC("MoveLeft", RpcTarget.Others);
+                }
+                else if (isUp)
+                {
+                    LookUp();
+                }
+                else if (isDown)
+                {
+                    LookDown();
+                }
+                else
+                {
+                    MoveRight();
+                }
             }
         }
     }

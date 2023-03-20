@@ -547,6 +547,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1162901863548322191, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
+      propertyPath: weight
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 1162901863548322300, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_Name
       value: Guardian

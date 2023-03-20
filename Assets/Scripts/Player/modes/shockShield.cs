@@ -63,7 +63,7 @@ public class shockShield : MonoBehaviour
                 {
                     if (fiend.GetComponent<damagePlayer>() != null)
                     {
-                        fiend.GetComponent<damagePlayer>().recieveDamage();
+                        // fiend.GetComponent<damagePlayer>().recieveDamage();
                         // if (this.transform.position.x < fiend.transform.position.x)
                         // {
                         //     fiend.GetComponent<damagePlayer>().hDir = 1;

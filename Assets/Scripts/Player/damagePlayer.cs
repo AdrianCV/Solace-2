@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     private GameObject _otherPlayer;
 
     private GameObject ui;
+
+    [SerializeField] private float weight;
 
 
     // Start is called before the first frame update
@@ -107,9 +110,9 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-    public void recieveDamage()
+    public void recieveDamage(GameObject attacker)
     {
-        damageTaken++;
+        damageTaken += 10;
         PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendUnreliable);
 
 
@@ -139,6 +142,11 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
                 }
             }
         }
+
+        float knockback = (((damageTaken / 10) + 2) * 100) / weight * (1 - weight / 100) * 1.2f;
+
+        Vector2 dir = ((transform.position - attacker.transform.position).normalized + Vector3.up * 1.5f).normalized;
+        rb.AddForce(dir * knockback);
     }
 
     void fixTime()
@@ -160,13 +168,13 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (collision.tag == "EnemyWeapon" && collision.gameObject != _damageBox)
         {
-            recieveDamage();
+            recieveDamage(collision.gameObject);
         }
         else if (collision.gameObject.layer == 18)
         {
             damageTaken = 1;
             instantDeath = true;
-            recieveDamage();
+            recieveDamage(collision.gameObject);
         }
     }
 
@@ -176,7 +184,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (isMortal)
             {
-                recieveDamage();
+                recieveDamage(other.gameObject);
                 if (this.transform.position.x < other.transform.position.x)
                 {
                     rb.velocity = new Vector2(-6, 6);

@@ -592,12 +592,13 @@ MonoBehaviour:
   heightOffset: -0.85
   lookingLeft: 0
   jumpHeight: 4
-  MoveInput: 0
-  SavedInput: 1
   stickRender: {fileID: 928406103804344204}
   playerAnim: {fileID: 928406103804344205}
   isSitting: 0
   wallDistance: 0.325
+  MoveInput: 0
+  SavedInput: 1
+  LookInput: 0
   IsGuardian: 0
   _cam: {fileID: 5734929817429010061}
   view: {fileID: 0}
@@ -622,6 +623,7 @@ MonoBehaviour:
   shieldOn: 0
   _damageBox: {fileID: 4280340610412273459}
   uiDamage: {fileID: 0}
+  weight: 2.5
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4
@@ -689,6 +691,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5790027306584472622}
+  - {fileID: 2114141836855100458}
   - {fileID: 6018666554351436320}
   - {fileID: 1586497779}
   sceneViewId: 0

@@ -7276,12 +7276,13 @@ MonoBehaviour:
   heightOffset: -0.85
   lookingLeft: 0
   jumpHeight: 100
-  MoveInput: 0
-  SavedInput: 1
   stickRender: {fileID: 1162901862515322695}
   playerAnim: {fileID: 1162901862515322688}
   isSitting: 0
   wallDistance: 0.4
+  MoveInput: 0
+  SavedInput: 1
+  LookInput: 0
   IsGuardian: 1
   _cam: {fileID: 1162901863281525767}
   view: {fileID: 0}
@@ -7306,6 +7307,7 @@ MonoBehaviour:
   shieldOn: 0
   _damageBox: {fileID: 1162901863410819978}
   uiDamage: {fileID: 0}
+  weight: 1.25
 --- !u!114 &1162901863548322184
 MonoBehaviour:
   m_ObjectHideFlags: 0
