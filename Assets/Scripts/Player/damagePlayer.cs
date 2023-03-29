@@ -12,7 +12,7 @@ using ExitGames.Client.Photon;
 public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float damageTaken = 0;
-    public float maxHp;
+    public float lives = 3;
     private Rigidbody2D rb;
     public GameObject hitEffect;
 
@@ -44,7 +44,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        maxHp = damageTaken;
         rb = this.GetComponent<Rigidbody2D>();
         dashScript = FindObjectOfType<dashMove>();
 
@@ -101,7 +100,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             // SceneManager.LoadScene(FindObjectOfType<checkSaver>().lastCheckScene);
             // transform.position = FindObjectOfType<checkSaver>().lastCheckPoint;
             GetComponent<energyController>().energy = GetComponent<energyController>().maxEnergy;
-            damageTaken = maxHp;
             deathAnim.SetBool("isDead", false);
             FindObjectOfType<character>().enabled = true;
             isDead = false;
@@ -158,10 +156,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void recieveHealth()
     {
         damageTaken--;
-        if (damageTaken < maxHp)
-        {
-            damageTaken = maxHp;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -175,6 +169,12 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             damageTaken = 1;
             instantDeath = true;
             recieveDamage(collision.gameObject);
+        }
+        else if (collision.tag == "DeathBox")
+        {
+            damageTaken = 0;
+            lives--;
+            transform.position = new Vector2(0, 0);
         }
     }
 

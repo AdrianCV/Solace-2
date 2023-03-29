@@ -31,14 +31,14 @@ public class character : MonoBehaviour, IPunObservable
 
     private IEnumerator coroutine;
 
-    [HideInInspector] public float MoveInput;
+    public float MoveInput;
     [HideInInspector] public int SavedInput = 1;
     [HideInInspector] public int LookInput;
 
     public bool IsGuardian;
     [SerializeField] private Camera _cam;
 
-    public PhotonView view;
+    [HideInInspector] public PhotonView view;
 
 
     private void Start()
@@ -121,15 +121,14 @@ public class character : MonoBehaviour, IPunObservable
                 playerAnim.SetBool("running", true);
             }
             // Moving right
-            if (MoveInput > 0)
+            else if (MoveInput > 0)
             {
                 // stickRender.flipX = false;
                 lookingLeft = false;
                 playerAnim.SetBool("running", true);
             }
             // }
-
-            if (MoveInput == 0)
+            else
             {
                 playerAnim.SetBool("running", false);
             }
@@ -242,7 +241,7 @@ public class character : MonoBehaviour, IPunObservable
 
     public void IceClownAttack()
     {
-        if (LookInput == 0 && MoveInput == 0)
+        if (LookInput == 0 && rb.velocity.x == 0)
         {
             playerAnim.SetTrigger("attacking");
         }
@@ -272,7 +271,8 @@ public class character : MonoBehaviour, IPunObservable
     {
         if (!isSitting && MoveInput != 0)
         {
-            transform.position += Vector3.right * MoveInput * speed;
+            rb.MovePosition(transform.position + (Vector3.right * MoveInput * speed));
+            // transform.position += Vector3.right * MoveInput * speed;
             playerAnim.SetInteger("speed", (int)MoveInput);
         }
         else
@@ -295,11 +295,23 @@ public class character : MonoBehaviour, IPunObservable
         {
             stream.SendNext(SavedInput);
             stream.SendNext(MoveInput);
+
+            // Lag compensation
+            stream.SendNext(rb.position);
+            stream.SendNext(rb.rotation);
+            stream.SendNext(rb.velocity);
         }
         else
         {
             SavedInput = (int)stream.ReceiveNext();
             MoveInput = (float)stream.ReceiveNext();
+
+            rb.position = (Vector3)stream.ReceiveNext();
+            rb.rotation = (float)stream.ReceiveNext();
+            rb.velocity = (Vector3)stream.ReceiveNext();
+
+            float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+            rb.position += rb.velocity * lag;
         }
     }
 }

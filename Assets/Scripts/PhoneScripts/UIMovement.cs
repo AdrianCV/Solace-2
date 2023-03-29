@@ -27,7 +27,6 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
 
     public void MoveLeft()
     {
-
         view.GetComponent<character>().MoveInput = -1;
         view.GetComponent<character>().SavedInput = -1;
     }

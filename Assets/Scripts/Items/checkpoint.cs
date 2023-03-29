@@ -41,7 +41,6 @@ public class checkpoint : MonoBehaviour
         {
             thisTriggered = true;
             FindObjectOfType<thisIsSoICanFindIt>().gameObject.GetComponent<Animator>().SetBool("checkFade", true);
-            FindObjectOfType<damagePlayer>().damageTaken = FindObjectOfType<damagePlayer>().maxHp;
             if (lastLevel == true)
             {
                 FindObjectOfType<damagePlayer>().damageTaken = 4;
