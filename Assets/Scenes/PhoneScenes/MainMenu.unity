@@ -146,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 7815309275779583596, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
       propertyPath: Tracker
       value: 
-      objectReference: {fileID: 11400000, guid: 91dcaa92bed524a488e2f36a6d30bd16, type: 2}
+      objectReference: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
     - target: {fileID: 7815309275779583597, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -636,6 +636,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8014928697337248755, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928406103804344202, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390819484394643120, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}

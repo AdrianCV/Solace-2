@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DailyRewardButton : MonoBehaviour
 {
-    [SerializeField] private DailyRewardTracker dailyRewardTracker;
+    [SerializeField] private StatTracker dailyRewardTracker;
 
     [SerializeField] private GameObject rewardMenu;
     [SerializeField] private GameObject hasRecievedRewardMenu;

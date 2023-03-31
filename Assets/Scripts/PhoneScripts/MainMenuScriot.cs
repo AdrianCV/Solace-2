@@ -11,7 +11,7 @@ public class MainMenuScriot : MonoBehaviour
     [SerializeField] private GameObject _rankedSelect;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private TMP_Text _coins;
-    public DailyRewardTracker Tracker;
+    public StatTracker Tracker;
 
     private void Start()
     {

@@ -1,4 +1,3 @@
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +22,8 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     private bool enterIn = false;
     private bool instantDeath = false;
 
+    private bool _won;
+
     private dashMove dashScript;
 
 
@@ -33,6 +34,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     public UIDamage uiDamage;
 
     private const byte DAMAGE_EVENT = 0;
+    private const byte WON_EVENT = 1;
 
     private GameObject _otherPlayer;
 
@@ -219,6 +221,17 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (obj.Code == DAMAGE_EVENT)
         {
             uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
+        }
+        else if (obj.Code == WON_EVENT)
+        {
+            if (lives == 0)
+            {
+                _won = false;
+            }
+            else
+            {
+                _won = true;
+            }
         }
     }
 

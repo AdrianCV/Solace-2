@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class character : MonoBehaviour, IPunObservable
+public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float speed = 0.1f;
     [SerializeField] private float m_JumpForce = 400f;
@@ -39,6 +41,10 @@ public class character : MonoBehaviour, IPunObservable
     [SerializeField] private Camera _cam;
 
     [HideInInspector] public PhotonView view;
+
+    private const byte WON_EVENT = 0;
+
+
 
 
     private void Start()
