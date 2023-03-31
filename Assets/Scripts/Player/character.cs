@@ -241,17 +241,17 @@ public class character : MonoBehaviour, IPunObservable
 
     public void IceClownAttack()
     {
-        if (LookInput == 0 && rb.velocity.x == 0)
+        if (LookInput == 0 && MoveInput == 0)
         {
             playerAnim.SetTrigger("attacking");
         }
         else if (MoveInput != 0)
         {
-
+            playerAnim.SetTrigger("attacking");
         }
         else if (LookInput != 0)
         {
-
+            playerAnim.SetTrigger("attacking");
         }
     }
 

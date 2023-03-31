@@ -28,17 +28,17 @@ public class BuyableItemScript : MonoBehaviour
     {
         if (!_repeatable)
         {
-            if (_mainMenu.Coins >= _cost)
+            if (_mainMenu.Tracker.Coins >= _cost)
             {
                 _buyButton.interactable = false;
                 _boughtSprite.SetActive(true);
-                _mainMenu.Coins -= _cost;
+                _mainMenu.Tracker.Coins -= _cost;
             }
         }
     }
 
     public void BuyCoins()
     {
-        _mainMenu.Coins += _coinValue;
+        _mainMenu.Tracker.Coins += _coinValue;
     }
 }

@@ -11,7 +11,7 @@ public class MainMenuScriot : MonoBehaviour
     [SerializeField] private GameObject _rankedSelect;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private TMP_Text _coins;
-    public float Coins;
+    public DailyRewardTracker Tracker;
 
     private void Start()
     {
@@ -20,8 +20,8 @@ public class MainMenuScriot : MonoBehaviour
 
     private void Update()
     {
-        _coins.text = "Coins: " + Coins;
-        Coins = Mathf.Clamp(Coins, 0, Mathf.Infinity);
+        _coins.text = "Coins: " + Tracker.Coins;
+        Tracker.Coins = Mathf.Clamp(Tracker.Coins, 0, Mathf.Infinity);
     }
 
     public void StartButton()

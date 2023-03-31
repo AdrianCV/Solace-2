@@ -23,12 +23,15 @@ public class parryAttack : MonoBehaviour
     public GameObject hitAnim;
     [SerializeField] private GameObject soul;
 
+    private character _charScript;
+
     // Start is called before the first frame update
     void Start()
     {
         coolDown = cdTime + upTime;
         shieldLocation = shield.transform.localPosition.x;
         floorLayer = ~floorLayer;
+        _charScript = GetComponent<character>();
     }
 
     private void OnDrawGizmos()
@@ -39,7 +42,7 @@ public class parryAttack : MonoBehaviour
 
     public void hit()
     {
-        if (GetComponent<character>().MoveInput == 0 && GetComponent<character>().LookInput == 0)
+        if (_charScript.MoveInput == 0 && _charScript.LookInput == 0)
         {
             Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(new Vector2(this.transform.position.x, this.transform.position.y) + attackArea, attackSize, enemyLayer);
 
@@ -47,10 +50,7 @@ public class parryAttack : MonoBehaviour
             {
                 hitAnim.GetComponent<Animator>().SetTrigger("hit");
                 hitAnim.GetComponent<AudioSource>().Play();
-                cooldownActive = true;
-                // shield.SetActive(true);
-                Invoke("closeShield", upTime);
-                Invoke("endCool", coolDown);
+
 
                 // bool enemyFound = false;
 
@@ -81,18 +81,41 @@ public class parryAttack : MonoBehaviour
                 // }
 
                 // flips the animations thingy
-
-                if (!this.GetComponent<character>().stickRender.flipX)
-                {
-                    hitAnim.GetComponent<SpriteRenderer>().flipX = false;
-                    hitAnim.transform.localPosition = new Vector3(0.87f, 0.18f, 0);
-                }
-                else
-                {
-                    hitAnim.GetComponent<SpriteRenderer>().flipX = true;
-                    hitAnim.transform.localPosition = new Vector3(-0.87f, 0.18f, 0);
-                }
+                EndOfAttack();
+                CheckRotation();
             }
+        }
+        else if (_charScript.MoveInput != 0)
+        {
+            EndOfAttack();
+            CheckRotation();
+        }
+        else if (_charScript.LookInput != 0)
+        {
+            EndOfAttack();
+            CheckRotation();
+        }
+    }
+
+    void EndOfAttack()
+    {
+        cooldownActive = true;
+        Invoke("closeShield", upTime);
+        Invoke("endCool", coolDown);
+
+    }
+
+    void CheckRotation()
+    {
+        if (!this.GetComponent<character>().stickRender.flipX)
+        {
+            hitAnim.GetComponent<SpriteRenderer>().flipX = false;
+            hitAnim.transform.localPosition = new Vector3(0.87f, 0.18f, 0);
+        }
+        else
+        {
+            hitAnim.GetComponent<SpriteRenderer>().flipX = true;
+            hitAnim.transform.localPosition = new Vector3(-0.87f, 0.18f, 0);
         }
     }
 
