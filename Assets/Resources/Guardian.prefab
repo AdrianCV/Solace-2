@@ -7308,6 +7308,7 @@ MonoBehaviour:
   _damageBox: {fileID: 1162901863410819978}
   uiDamage: {fileID: 0}
   weight: 1.25
+  _stats: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
 --- !u!114 &1162901863548322184
 MonoBehaviour:
   m_ObjectHideFlags: 0

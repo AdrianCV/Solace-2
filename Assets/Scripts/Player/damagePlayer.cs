@@ -115,7 +115,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     public void recieveDamage(GameObject attacker)
     {
         damageTaken += 10;
-        PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendUnreliable);
+        PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendReliable);
 
 
         var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
@@ -179,6 +179,14 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             damageTaken = 0;
             lives--;
             transform.position = new Vector2(0, 0);
+            if (lives == 0)
+            {
+
+            }
+
+            CalculateRank();
+
+            // PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendUnreliable);
         }
     }
 
@@ -208,7 +216,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void CalculateRank()
     {
-        _stats.RankedPoint += _stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, _stats.OpponentRankedPoints));
+        _stats.RankedPoint += (int)(_stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, _stats.OpponentRankedPoints)));
     }
 
     public float CalculateEloExpectedScore(float playerRating, float opponentRating)
@@ -236,7 +244,9 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
         }
-        else if (obj.Code == GAMEOVER_EVENT)
+        print("wo");
+
+        if (obj.Code == GAMEOVER_EVENT)
         {
             if (lives == 0)
             {

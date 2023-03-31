@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasRecievedDailyReward: 0
   Coins: 0
-  RankedPoint: 0
-  OpponentRankedPoints: 0
-  RankConstant: 10
+  RankedPoint: 1300
+  OpponentRankedPoints: 1700
+  RankConstant: 32
