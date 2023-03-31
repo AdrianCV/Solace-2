@@ -11,4 +11,8 @@ public class StatTracker : ScriptableObject
     public float Coins;
 
     public float RankedPoint;
+
+    public float OpponentRankedPoints;
+
+    public float RankConstant;
 }

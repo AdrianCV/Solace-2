@@ -34,13 +34,15 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     public UIDamage uiDamage;
 
     private const byte DAMAGE_EVENT = 0;
-    private const byte WON_EVENT = 1;
+    private const byte GAMEOVER_EVENT = 1;
 
     private GameObject _otherPlayer;
 
     private GameObject ui;
 
     [SerializeField] private float weight;
+
+    [SerializeField] private StatTracker _stats;
 
 
     // Start is called before the first frame update
@@ -204,6 +206,18 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         isMortal = true;
     }
 
+    void CalculateRank()
+    {
+        _stats.RankedPoint += _stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, _stats.OpponentRankedPoints));
+    }
+
+    public float CalculateEloExpectedScore(float playerRating, float opponentRating)
+    {
+        float exponent = (opponentRating - playerRating) / 400f;
+        float expectedScore = 1f / (1f + Mathf.Pow(10f, exponent));
+        return expectedScore;
+    }
+
     public override void OnEnable()
     {
         base.OnEnable();
@@ -222,7 +236,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
         }
-        else if (obj.Code == WON_EVENT)
+        else if (obj.Code == GAMEOVER_EVENT)
         {
             if (lives == 0)
             {
@@ -232,6 +246,8 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 _won = true;
             }
+
+            CalculateRank();
         }
     }
 
