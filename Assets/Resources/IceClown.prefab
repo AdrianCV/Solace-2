@@ -621,6 +621,7 @@ MonoBehaviour:
   isDead: 0
   isMortal: 1
   shieldOn: 0
+  _won: 0
   _damageBox: {fileID: 4280340610412273459}
   uiDamage: {fileID: 0}
   weight: 2.5

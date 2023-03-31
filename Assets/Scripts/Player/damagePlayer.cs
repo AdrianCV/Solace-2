@@ -22,7 +22,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     private bool enterIn = false;
     private bool instantDeath = false;
 
-    private bool _won;
+    [SerializeField] private bool _won;
 
     private dashMove dashScript;
 
@@ -33,8 +33,8 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     public UIDamage uiDamage;
 
-    private const byte DAMAGE_EVENT = 0;
-    private const byte GAMEOVER_EVENT = 1;
+    public const byte DAMAGE_EVENT = 0;
+    public const byte GAMEOVER_EVENT = 1;
 
     private GameObject _otherPlayer;
 
@@ -108,7 +108,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             FindObjectOfType<character>().enabled = true;
             isDead = false;
         }
-
     }
 
 
@@ -186,7 +185,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
             CalculateRank();
 
-            // PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendUnreliable);
+            PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendReliable);
         }
     }
 
@@ -256,8 +255,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 _won = true;
             }
-
-            CalculateRank();
         }
     }
 

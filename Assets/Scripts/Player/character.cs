@@ -277,7 +277,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!isSitting && MoveInput != 0)
         {
-            rb.MovePosition(transform.position + (Vector3.right * MoveInput * speed));
+            transform.position += (Vector3.right * MoveInput * speed);
             // transform.position += Vector3.right * MoveInput * speed;
             playerAnim.SetInteger("speed", (int)MoveInput);
         }
@@ -303,21 +303,21 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(MoveInput);
 
             // Lag compensation
-            stream.SendNext(rb.position);
-            stream.SendNext(rb.rotation);
-            stream.SendNext(rb.velocity);
+            // stream.SendNext(rb.position);
+            // stream.SendNext(rb.rotation);
+            // stream.SendNext(rb.velocity);
         }
         else
         {
             SavedInput = (int)stream.ReceiveNext();
             MoveInput = (float)stream.ReceiveNext();
 
-            rb.position = (Vector3)stream.ReceiveNext();
-            rb.rotation = (float)stream.ReceiveNext();
-            rb.velocity = (Vector3)stream.ReceiveNext();
+            // rb.position = (Vector3)stream.ReceiveNext();
+            // rb.rotation = (float)stream.ReceiveNext();
+            // rb.velocity = (Vector3)stream.ReceiveNext();
 
-            float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
-            rb.position += rb.velocity * lag;
+            // float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+            // rb.position += rb.velocity * lag;
         }
     }
 }
