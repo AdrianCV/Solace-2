@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65930bbe24788841b046e0384ec07fa, type: 3}
+  m_Name: StatTracker
+  m_EditorClassIdentifier: 
+  HasRecievedDailyReward: 0
+  Coins: 6000
+  RankedPoint: 1300
+  OpponentRankedPoints: 1700
+  RankConstant: 32
+  BoughtSkins:
+  - {fileID: 11400000, guid: 02827c2575b544342b98836420251200, type: 2}
+  - {fileID: 11400000, guid: 40087c8807dbc0c44986da108c0d96ec, type: 2}
+  - {fileID: 11400000, guid: c0820c2b27d788f4dbd5d8604278ae4d, type: 2}
+  - {fileID: 11400000, guid: 2921f760964d6fe4eb364da1de6af4ef, type: 2}
+  - {fileID: 11400000, guid: 1d15266c3f9b10448a9c52228f08ba63, type: 2}
+  - {fileID: 11400000, guid: cbed649a12aa0a743a1421f80f4ad024, type: 2}
+  BoughtCharacters:
+  - {fileID: 11400000, guid: 78920a024c8103341af5c1fc670081aa, type: 2}
+  - {fileID: 11400000, guid: ce789be685152f5429826b7a0d68e8b6, type: 2}
+  - {fileID: 11400000, guid: da62d0d340e2ba94586dd2148256516e, type: 2}

@@ -6,6 +6,13 @@ public class Settings : MonoBehaviour
 {
     [SerializeField] private GameObject[] otherUIElements;
     [SerializeField] private GameObject closeButton;
+    [SerializeField] private GameObject resetButton;
+    [SerializeField] private MainManager _stats;
+
+    private void Awake()
+    {
+        _stats = GameObject.FindObjectOfType<MainManager>();
+    }
 
     public void SettingsButton()
     {
@@ -14,6 +21,13 @@ public class Settings : MonoBehaviour
             element.SetActive(false);
         }
         closeButton.SetActive(true);
+        resetButton.SetActive(true);
+    }
+
+    public void Reset()
+    {
+        _stats.BoughtCharacters.Clear();
+        _stats.BoughtSkins.Clear();
     }
 
     public void CloseSettings()
@@ -23,5 +37,6 @@ public class Settings : MonoBehaviour
             element.SetActive(true);
         }
         closeButton.SetActive(false);
+        resetButton.SetActive(false);
     }
 }

@@ -19,6 +19,7 @@ public class DailyRewardButton : MonoBehaviour
         {
             rewardMenu.SetActive(true);
             dailyRewardTracker.HasRecievedDailyReward = true;
+            dailyRewardTracker.Coins += 500;
         }
     }
 }

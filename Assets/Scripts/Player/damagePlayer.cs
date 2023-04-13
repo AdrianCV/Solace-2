@@ -243,10 +243,11 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
         }
-        print("wo");
 
         if (obj.Code == GAMEOVER_EVENT)
         {
+            print("wo");
+
             if (lives == 0)
             {
                 _won = false;

@@ -29,6 +29,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void MainMenu()
     {
+        PhotonNetwork.Disconnect();
         SceneManager.LoadScene("MainMenu");
     }
 }

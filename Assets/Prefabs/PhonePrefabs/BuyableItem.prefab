@@ -55,6 +55,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buyButton: {fileID: 6391817229809043447}
   _boughtSprite: {fileID: 5560725726724721892}
+  _repeatable: 0
+  _skin: 0
+  _character: 0
+  _mainMenu: {fileID: 0}
+  _coinValue: 0
+  _cost: 0
+  _stats: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
 --- !u!1 &5560725726724721892
 GameObject:
   m_ObjectHideFlags: 0

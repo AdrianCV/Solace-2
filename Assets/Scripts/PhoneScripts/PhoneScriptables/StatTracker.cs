@@ -15,4 +15,8 @@ public class StatTracker : ScriptableObject
     public float OpponentRankedPoints;
 
     public float RankConstant;
+
+    public List<BoughtItems> BoughtSkins;
+
+    public List<BoughtItems> BoughtCharacters;
 }

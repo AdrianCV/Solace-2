@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65930bbe24788841b046e0384ec07fa, type: 3}
-  m_Name: StatTracker
+  m_Script: {fileID: 11500000, guid: dcd923475ea297446a76cf3cf9e506e8, type: 3}
+  m_Name: S 1
   m_EditorClassIdentifier: 
-  HasRecievedDailyReward: 0
-  Coins: 0
-  RankedPoint: 1300
-  OpponentRankedPoints: 1700
-  RankConstant: 32

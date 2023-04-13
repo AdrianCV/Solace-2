@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using TMPro;
+using Photon.Pun;
+
 
 public class MainMenuScriot : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class MainMenuScriot : MonoBehaviour
 
     private void Update()
     {
+        if (_coins == null)
+        {
+            return;
+        }
+
         _coins.text = "Coins: " + Tracker.Coins;
         Tracker.Coins = Mathf.Clamp(Tracker.Coins, 0, Mathf.Infinity);
     }
@@ -32,7 +39,22 @@ public class MainMenuScriot : MonoBehaviour
 
     public void RankedButtons()
     {
+        gameObject.SetActive(false);
         SceneManager.LoadScene("Loading");
+    }
+
+    public void Return()
+    {
+        if (_rankedSelect != null)
+        {
+            _rankedSelect.SetActive(false);
+            _defaultMenu.SetActive(true);
+        }
+        else
+        {
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void OnGUI()

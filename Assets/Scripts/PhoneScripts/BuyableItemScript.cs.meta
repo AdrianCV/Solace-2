@@ -3,7 +3,11 @@ guid: b4dd1573e961d9748a13e316881cab68
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _buyButton: {instanceID: 0}
+  - _boughtSprite: {instanceID: 0}
+  - _mainMenu: {instanceID: 0}
+  - _stats: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
