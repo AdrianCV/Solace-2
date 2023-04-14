@@ -13,11 +13,17 @@ public class MainMenuScriot : MonoBehaviour
     [SerializeField] private GameObject _rankedSelect;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private TMP_Text _coins;
-    public StatTracker Tracker;
+    [SerializeField] private bool onPhone;
+    public MainManager Tracker;
 
-    private void Start()
+    private void Awake()
     {
-        InputSystem.EnableDevice(LightSensor.current);
+        Tracker = GameObject.FindObjectOfType<MainManager>();
+
+        if (onPhone)
+        {
+            InputSystem.EnableDevice(LightSensor.current);
+        }
     }
 
     private void Update()
@@ -28,7 +34,8 @@ public class MainMenuScriot : MonoBehaviour
         }
 
         _coins.text = "Coins: " + Tracker.Coins;
-        Tracker.Coins = Mathf.Clamp(Tracker.Coins, 0, Mathf.Infinity);
+        print(_coins.text);
+        Tracker.Coins = Mathf.Max(Tracker.Coins, 0);
     }
 
     public void StartButton()

@@ -9,6 +9,7 @@ public class GameData
 {
     public int softCurrency;
     public int hardCurrency;
+    public List<string> purchasedItems;
     public DateTime lastDailyReward;
     public DateTime lastDailyChallenge;
 

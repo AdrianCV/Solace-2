@@ -22,6 +22,7 @@ public class DataPersistanceManager : MonoBehaviour
             Debug.LogError("Found more than one Data Persistance Manager in the scene.");
         }
         instance = this;
+        DontDestroyOnLoad(instance);
     }
 
     private void Start()
@@ -65,7 +66,7 @@ public class DataPersistanceManager : MonoBehaviour
         {
             dataPersistanceObj.SaveData(ref gameData);
         }
-        print("Saved death count = " + gameData.softCurrency);
+        // print("Saved death count = " + gameData.softCurrency);
 
         // TODO - save that data to a file using the data handler
 

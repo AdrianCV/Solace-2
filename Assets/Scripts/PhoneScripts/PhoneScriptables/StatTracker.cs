@@ -8,9 +8,9 @@ public class StatTracker : ScriptableObject
 {
     public bool HasRecievedDailyReward;
 
-    public float Coins;
+    // public float Coins;
 
-    public float RankedPoint;
+    // public float RankedPoint;
 
     public float OpponentRankedPoints;
 

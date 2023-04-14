@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd923475ea297446a76cf3cf9e506e8, type: 3}
   m_Name: S 1
   m_EditorClassIdentifier: 
+  Name: Skin #2

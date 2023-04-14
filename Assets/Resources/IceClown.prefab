@@ -625,7 +625,7 @@ MonoBehaviour:
   _damageBox: {fileID: 4280340610412273459}
   uiDamage: {fileID: 0}
   weight: 2.5
-  _stats: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
+  _stats: {fileID: 0}
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4

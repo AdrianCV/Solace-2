@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/BoughtItems")]
 public class BoughtItems : ScriptableObject
 {
-
+    public string Name;
 }

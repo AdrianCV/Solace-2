@@ -42,12 +42,13 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField] private float weight;
 
-    [SerializeField] private StatTracker _stats;
+    [SerializeField] private MainManager _stats;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _stats = GameObject.FindObjectOfType<MainManager>();
         rb = this.GetComponent<Rigidbody2D>();
         dashScript = FindObjectOfType<dashMove>();
 
@@ -215,7 +216,9 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void CalculateRank()
     {
-        _stats.RankedPoint += (int)(_stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, _stats.OpponentRankedPoints)));
+        _stats.RankedPoint += (int)(_stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, 1900)));
+
+        // _stats.RankedPoint += (int)(_stats.RankConstant * (_won ? 1 : 0 - CalculateEloExpectedScore(_stats.RankedPoint, _stats.OpponentRankedPoints)));
     }
 
     public float CalculateEloExpectedScore(float playerRating, float opponentRating)

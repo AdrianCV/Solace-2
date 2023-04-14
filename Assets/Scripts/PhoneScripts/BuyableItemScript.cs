@@ -4,13 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BuyableItemScript : MonoBehaviour
 {
     [SerializeField] private Button _buyButton;
+    [SerializeField] private TMP_Text _itemName;
     [SerializeField] private GameObject _boughtSprite;
     [SerializeField] private bool _repeatable;
-    [SerializeField] private bool _skin, _character;
+    // [SerializeField] private bool _skin, _character;
     [SerializeField] private MainMenuScriot _mainMenu;
     [SerializeField] private int _coinValue;
     [SerializeField] private int _cost;
@@ -22,41 +24,30 @@ public class BuyableItemScript : MonoBehaviour
     private void Awake()
     {
         _manager = GameObject.FindObjectOfType<MainManager>();
+
+        if (_item != null)
+        {
+            _itemName.text = _item.Name;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_skin)
+        if (_item != null)
         {
-            if (_manager.BoughtSkins.Contains(_item))
+            if (_manager.PurchasedItems.Contains(_item.Name))
             {
                 _buyButton.interactable = false;
                 _boughtSprite.SetActive(true);
-            }
-            else
-            {
-                _buyButton.interactable = true;
-                _boughtSprite.SetActive(false);
-            }
-        }
-        else if (_character)
-        {
-            if (_manager.BoughtCharacters.Contains(_item))
-            {
-                _buyButton.interactable = false;
-                _boughtSprite.SetActive(true);
-            }
-            else
-            {
-                _buyButton.interactable = true;
-                _boughtSprite.SetActive(false);
             }
         }
     }
 
     public void BuyItem()
     {
+        // _manager.saveManager.SaveGame();
+
         if (_repeatable)
         {
             return;
@@ -68,14 +59,7 @@ public class BuyableItemScript : MonoBehaviour
             _boughtSprite.SetActive(true);
             _mainMenu.Tracker.Coins -= _cost;
 
-            if (_skin)
-            {
-                _manager.BoughtSkins.Add(_item);
-            }
-            else if (_character)
-            {
-                _manager.BoughtCharacters.Add(_item);
-            }
+            _manager.PurchasedItems.Add(_item.Name);
         }
     }
 

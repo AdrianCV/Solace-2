@@ -17,7 +17,7 @@ public class DisableCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_stats.BoughtCharacters.Count == 0)
+        if (!_stats.PurchasedItems.Contains("Ice Clown"))
         {
             _boughtSprite.SetActive(true);
             _buyButton.interactable = false;

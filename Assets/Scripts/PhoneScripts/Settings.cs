@@ -26,8 +26,9 @@ public class Settings : MonoBehaviour
 
     public void Reset()
     {
-        _stats.BoughtCharacters.Clear();
-        _stats.BoughtSkins.Clear();
+        _stats.PurchasedItems.Clear();
+        _stats.Coins = 0;
+        // _stats.saveManager.SaveGame();
     }
 
     public void CloseSettings()
