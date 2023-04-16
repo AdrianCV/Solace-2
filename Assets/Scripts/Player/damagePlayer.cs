@@ -316,13 +316,13 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
                 _controls.SetActive(false);
                 transform.GetChild(0).gameObject.SetActive(false);
                 _character.enabled = false;
-                _stats.Coins -= _stats.BetAmount;
-                _stats.Coins = Mathf.Max(_stats.Coins, 0);
+                _stats.SoftCoins -= _stats.BetAmount;
+                _stats.SoftCoins = Mathf.Max(_stats.SoftCoins, 0);
             }
             else
             {
                 _wonText.SetActive(true);
-                _stats.Coins += _stats.BetAmount;
+                _stats.SoftCoins += _stats.BetAmount;
             }
         }
         else

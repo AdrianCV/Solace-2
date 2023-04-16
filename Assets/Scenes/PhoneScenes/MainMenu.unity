@@ -131,21 +131,13 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3078427005618056007, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
-      propertyPath: _item
+    - target: {fileID: 286639970, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
+      propertyPath: _manager
       value: 
-      objectReference: {fileID: 11400000, guid: cbed649a12aa0a743a1421f80f4ad024, type: 2}
-    - target: {fileID: 4824844812436479557, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
-      propertyPath: _item
-      value: 
-      objectReference: {fileID: 11400000, guid: 2921f760964d6fe4eb364da1de6af4ef, type: 2}
+      objectReference: {fileID: 1689732161}
     - target: {fileID: 5225300847414365557, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
       propertyPath: sceneViewId
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7815309275779583596, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7815309275779583597, guid: a0a75601495cfbd438dab8de1764b37c, type: 3}
       propertyPath: m_Pivot.x
@@ -520,9 +512,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Coins: 0
+  SoftCoins: 0
   RankedPoint: 0
   RankConstant: 0
   BetAmount: 0
+  HasRecievedDailyReward: 0
   PurchasedItems: []
   saveManager: {fileID: 0}
 --- !u!4 &1689732162

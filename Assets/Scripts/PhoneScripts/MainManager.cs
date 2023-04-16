@@ -8,11 +8,15 @@ public class MainManager : MonoBehaviour, IDataPersistance
 
     public int Coins;
 
+    public int SoftCoins;
+
     public float RankedPoint;
 
     public float RankConstant;
 
     public int BetAmount;
+
+    public bool HasRecievedDailyReward;
 
     public List<string> PurchasedItems;
 

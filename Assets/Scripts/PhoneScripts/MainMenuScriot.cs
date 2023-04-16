@@ -13,6 +13,7 @@ public class MainMenuScriot : MonoBehaviour
     [SerializeField] private GameObject _rankedSelect;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private TMP_Text _coins;
+    [SerializeField] private TMP_Text _softCoins;
     [SerializeField] private bool onPhone;
     public MainManager Tracker;
 
@@ -34,6 +35,7 @@ public class MainMenuScriot : MonoBehaviour
         }
 
         _coins.text = "Coins: " + Tracker.Coins;
+        _softCoins.text = "Soft Coins: " + Tracker.SoftCoins;
         // print(_coins.text);
         Tracker.Coins = Mathf.Max(Tracker.Coins, 0);
     }

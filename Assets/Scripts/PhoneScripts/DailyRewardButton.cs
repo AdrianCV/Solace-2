@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class DailyRewardButton : MonoBehaviour
 {
-    [SerializeField] private StatTracker dailyRewardTracker;
+    [SerializeField] private MainManager _manager;
 
     [SerializeField] private GameObject rewardMenu;
     [SerializeField] private GameObject hasRecievedRewardMenu;
 
+    private void Start()
+    {
+        _manager = GameObject.FindObjectOfType<MainManager>();
+    }
+
     public void RecieveDailyReward()
     {
-        if (dailyRewardTracker.HasRecievedDailyReward)
+        if (_manager.HasRecievedDailyReward)
         {
-            hasRecievedRewardMenu.SetActive(true);
+            // hasRecievedRewardMenu.SetActive(true);
         }
         else
         {
-            rewardMenu.SetActive(true);
-            dailyRewardTracker.HasRecievedDailyReward = true;
-            // dailyRewardTracker.Coins += 500;
+            // rewardMenu.SetActive(true);
+            _manager.HasRecievedDailyReward = true;
+            _manager.SoftCoins += 500;
         }
     }
 }

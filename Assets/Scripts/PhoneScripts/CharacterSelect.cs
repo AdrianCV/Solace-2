@@ -55,7 +55,7 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
         try
         {
             var tempBet = int.Parse(_betAmount.text);
-            _manager.BetAmount = tempBet > _manager.Coins ? 0 : tempBet;
+            _manager.BetAmount = tempBet > _manager.SoftCoins ? _manager.SoftCoins : tempBet;
         }
         catch
         {
