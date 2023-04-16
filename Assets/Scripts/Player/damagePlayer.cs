@@ -308,7 +308,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         if (_character.view.IsMine)
         {
-            print("wo");
+            // print("wo");
 
             if (!_won)
             {
