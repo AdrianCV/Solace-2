@@ -4,16 +4,30 @@ using UnityEngine;
 using Photon.Pun;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterSelect : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private GameObject _betMenu;
+    [SerializeField] private GameObject _characterSelect;
+    [SerializeField] private TMP_InputField _betAmount;
+    private MainManager _manager;
+
+    private void Start()
+    {
+        Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Clear();
+        _manager = GameObject.FindObjectOfType<MainManager>();
+    }
+
+
     public void SelectGuardian()
     {
         Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
         hash.Add("Guardian", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 
-        PhotonNetwork.LoadLevel("Room");
+        ConfirmCharacter();
     }
 
     public override void OnLeftRoom()
@@ -27,6 +41,25 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
         hash.Add("IceClown", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 
+        ConfirmCharacter();
+    }
+
+    void ConfirmCharacter()
+    {
+        _characterSelect.SetActive(false);
+        _betMenu.SetActive(true);
+    }
+
+    public void ConfirmBet()
+    {
+        try
+        {
+            _manager.BetAmount = int.Parse(_betAmount.text);
+        }
+        catch
+        {
+            _manager.BetAmount = 0;
+        }
         PhotonNetwork.LoadLevel("Room");
     }
 }

@@ -11,7 +11,7 @@ using ExitGames.Client.Photon;
 public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float damageTaken = 0;
-    public float lives = 3;
+    public float lives = 1;
     private Rigidbody2D rb;
     public GameObject hitEffect;
 
@@ -23,6 +23,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     private bool instantDeath = false;
 
     [SerializeField] private bool _won;
+    private bool _over;
 
     private dashMove dashScript;
 
@@ -44,6 +45,11 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField] private MainManager _stats;
 
+    [SerializeField] private GameObject _wonText;
+    [SerializeField] private GameObject _lostText;
+
+    [SerializeField] private GameObject _controls;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,12 +61,21 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         _character = GetComponent<character>();
 
 
+
         if (_character.view.IsMine)
         {
             ui = GameObject.FindGameObjectWithTag("Canvas");
 
 
             uiDamage = ui.transform.GetChild(PhotonNetwork.PlayerList.Length - 1).GetComponent<UIDamage>();
+
+            _wonText = GameObject.FindGameObjectWithTag("WonText");
+            _wonText.SetActive(false);
+
+            _lostText = GameObject.FindGameObjectWithTag("LostText");
+            _lostText.SetActive(false);
+
+            _controls = GameObject.FindGameObjectWithTag("Controls");
         }
     }
 
@@ -79,6 +94,10 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if (lives <= 0)
+        {
+            _won = false;
+        }
         // Prototype text that we don't use
         // text.text = "HP: " + hp + "/" + maxHp;
 
@@ -178,15 +197,19 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             damageTaken = 0;
             lives--;
-            transform.position = new Vector2(0, 0);
-            if (lives == 0)
+            if (lives == 0 && !_over)
             {
 
+            }
+            else
+            {
+                transform.position = new Vector2(0, 0);
             }
 
             CalculateRank();
 
             PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendReliable);
+            GameOver();
         }
     }
 
@@ -249,16 +272,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         if (obj.Code == GAMEOVER_EVENT)
         {
-            print("wo");
-
-            if (lives == 0)
-            {
-                _won = false;
-            }
-            else
-            {
-                _won = true;
-            }
+            GameOver();
         }
     }
 
@@ -271,6 +285,52 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             damageTaken = (float)stream.ReceiveNext();
+        }
+    }
+
+    void GameOver()
+    {
+        if (!_over)
+        {
+            _over = true;
+            StartCoroutine(HandleGameOver());
+        }
+    }
+
+    IEnumerator HandleGameOver()
+    {
+        yield return new WaitForSeconds(1);
+        transform.position = new Vector2(0, 0);
+        if (lives > 0)
+        {
+            _won = true;
+        }
+
+        if (_character.view.IsMine)
+        {
+            print("wo");
+
+            if (!_won)
+            {
+                _lostText.SetActive(true);
+                _controls.SetActive(false);
+                transform.GetChild(0).gameObject.SetActive(false);
+                _character.enabled = false;
+                _stats.Coins -= _stats.BetAmount;
+                _stats.Coins = Mathf.Max(_stats.Coins, 0);
+            }
+            else
+            {
+                _wonText.SetActive(true);
+                _stats.Coins += _stats.BetAmount;
+            }
+        }
+        else
+        {
+            if (!_won)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

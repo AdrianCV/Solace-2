@@ -626,6 +626,9 @@ MonoBehaviour:
   uiDamage: {fileID: 0}
   weight: 2.5
   _stats: {fileID: 0}
+  _wonText: {fileID: 0}
+  _lostText: {fileID: 0}
+  _controls: {fileID: 0}
 --- !u!50 &5790027306584472623
 Rigidbody2D:
   serializedVersion: 4

@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 5319631520764173790}
   - component: {fileID: 5319631520764173789}
   - component: {fileID: 5319631520764173788}
+  - component: {fileID: 351934640}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -163,8 +164,8 @@ RectTransform:
   m_GameObject: {fileID: 5319631520764173786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5319631520514760182}
   m_Father: {fileID: 0}
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 351934640}
         m_TargetAssemblyTypeName: MainMenuScriot, Assembly-CSharp
         m_MethodName: Return
         m_Mode: 1
@@ -269,3 +270,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &351934640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319631520764173786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a928d5e49daac1a4bb698733b1915f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rankedSelect: {fileID: 0}
+  _defaultMenu: {fileID: 0}
+  _coins: {fileID: 0}
+  onPhone: 0
+  Tracker: {fileID: 0}

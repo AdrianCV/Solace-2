@@ -34,7 +34,7 @@ public class MainMenuScriot : MonoBehaviour
         }
 
         _coins.text = "Coins: " + Tracker.Coins;
-        print(_coins.text);
+        // print(_coins.text);
         Tracker.Coins = Mathf.Max(Tracker.Coins, 0);
     }
 

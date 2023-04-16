@@ -4998,7 +4998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162901862144659378
 Transform:
   m_ObjectHideFlags: 0
@@ -5642,7 +5642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162901862670747204
 Transform:
   m_ObjectHideFlags: 0
@@ -6277,7 +6277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162901862925109298
 Transform:
   m_ObjectHideFlags: 0
@@ -6901,7 +6901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162901863388719459
 Transform:
   m_ObjectHideFlags: 0
@@ -7299,7 +7299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageTaken: 0
-  lives: 3
+  lives: 1
   hitEffect: {fileID: 7111067520612749463, guid: 6f52278c462af2b4493ce8e0b11e6670, type: 3}
   deathAnim: {fileID: 0}
   isDead: 0
@@ -7308,8 +7308,11 @@ MonoBehaviour:
   _won: 0
   _damageBox: {fileID: 1162901863410819978}
   uiDamage: {fileID: 0}
-  weight: 1.25
-  _stats: {fileID: 11400000, guid: 2666be20928da85448109570389d004f, type: 2}
+  weight: 125
+  _stats: {fileID: 0}
+  _wonText: {fileID: 0}
+  _lostText: {fileID: 0}
+  _controls: {fileID: 0}
 --- !u!114 &1162901863548322184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7397,7 +7400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863548322300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b66c35587b98ef42bdc07817b19c68f, type: 3}
   m_Name: 
@@ -7461,7 +7464,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863548322300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ab0c2003fbdc7740bb69f9853ea12c8, type: 3}
   m_Name: 
@@ -7502,7 +7505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863548322300}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77ba95b68ed27294ba58449bf0e2052d, type: 3}
   m_Name: 
@@ -7878,7 +7881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162901863934943457
 Transform:
   m_ObjectHideFlags: 0
