@@ -133,41 +133,24 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     public void recieveDamage(GameObject attacker)
     {
-        damageTaken += 10;
-        PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendReliable);
+        if (!_character.Shielding)
+        {
+            damageTaken += 10;
+
+            float knockback = (((damageTaken / 10) + 2) * 100) / weight * (1 - weight / 100) * 1.2f;
+
+            Vector2 dir = ((transform.position - attacker.transform.position).normalized + Vector3.up * 1.5f).normalized;
+
+            rb.AddForce(dir * knockback);
+
+            PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendReliable);
+
+            _character.playerAnim.SetTrigger("hurt");
+        }
 
 
         var prefab = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, -5), transform.rotation);
         Destroy(prefab, 2);
-
-        _character.playerAnim.SetTrigger("hurt");
-
-
-        if (_character.IsGuardian)
-        {
-            if (!shieldOn)
-            {
-                // isMortal = false;
-                // Invoke("becomeMortal", 1f);
-                FindObjectOfType<modeSelector>().uiAnim.SetBool("isOn", false);
-                FindObjectOfType<modeSelector>().wheelUp = false;
-
-                // Time.timeScale = 0.2f;
-                // Invoke("fixTime", 0.2f / 5f);
-
-
-
-                if (dashScript.dashTime < dashScript.startDashTime)
-                {
-                    dashScript.enemyCollided();
-                }
-            }
-        }
-
-        float knockback = (((damageTaken / 10) + 2) * 100) / weight * (1 - weight / 100) * 1.2f;
-
-        Vector2 dir = ((transform.position - attacker.transform.position).normalized + Vector3.up * 1.5f).normalized;
-        rb.AddForce(dir * knockback);
     }
 
     void fixTime()

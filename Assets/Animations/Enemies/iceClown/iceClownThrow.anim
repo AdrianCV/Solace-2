@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: iceClownThrow
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -59,6 +59,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -7527287954647143764, guid: 422ba685c96b3784699f98ddccb397e6, type: 3}
     - {fileID: -2680306501959227657, guid: 422ba685c96b3784699f98ddccb397e6, type: 3}

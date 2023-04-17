@@ -23,7 +23,7 @@ public class parryAttack : MonoBehaviour
     public GameObject hitAnim;
     [SerializeField] private GameObject soul;
 
-    private character _charScript;
+    [SerializeField] private character _charScript;
 
     // Start is called before the first frame update
     void Start()

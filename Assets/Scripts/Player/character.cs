@@ -19,7 +19,6 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     public bool grounded = false;
     public bool onWall = false;
     public LayerMask groundLayer;
-    private bool shockShieldOn;
     public float heightOffset = 0.25f;
     public bool lookingLeft = false;
 
@@ -41,6 +40,10 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private Camera _cam;
 
     [HideInInspector] public PhotonView view;
+
+    public bool Shielding;
+
+    [SerializeField] private GameObject _shield;
 
     private const byte WON_EVENT = 0;
 
@@ -94,18 +97,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
             playerAnim.SetFloat("velocity", rb.velocity.y);
             GroundCheck();
 
-            // Checks if shield is on
-            if (IsGuardian)
-            {
-                if (FindObjectOfType<shockShield>().enabled == true && FindObjectOfType<shockShield>().shieldOn == true)
-                {
-                    shockShieldOn = true;
-                }
-                else
-                {
-                    shockShieldOn = false;
-                }
-            }
+
             // Jumping
             /*
             if (!shockShieldOn && grounded && !isSitting)
@@ -179,24 +171,14 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     {
         // print("jump");
         // Jumping
-        if (IsGuardian)
+
+        if (grounded)
         {
-            if (!shockShieldOn && grounded)
-            {
-                startHeight = this.transform.position.y;
-                rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
-                playerAnim.SetTrigger("jump");
-            }
+            startHeight = this.transform.position.y;
+            rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+            playerAnim.SetTrigger("jump");
         }
-        else
-        {
-            if (grounded)
-            {
-                startHeight = this.transform.position.y;
-                rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
-                playerAnim.SetTrigger("jump");
-            }
-        }
+
     }
 
     IEnumerator waitWall()
@@ -258,6 +240,18 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         else if (LookInput != 0)
         {
             playerAnim.SetTrigger("attacking");
+        }
+    }
+
+    void Shield()
+    {
+        if (Shielding)
+        {
+            _shield.SetActive(true);
+        }
+        else
+        {
+            _shield.SetActive(false);
         }
     }
 

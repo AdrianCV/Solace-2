@@ -5344,6 +5344,7 @@ GameObject:
   - component: {fileID: 1162901862515322688}
   - component: {fileID: 2887897611000436535}
   - component: {fileID: 2388161620968243172}
+  - component: {fileID: 8312649158319185814}
   m_Layer: 0
   m_Name: character-0003-Sheet_0
   m_TagString: Untagged
@@ -5508,6 +5509,20 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &8312649158319185814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162901862515322690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d929f2fad65e844c97888c2ddfa6b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackAudio: {fileID: 0}
+  _damageAudio: {fileID: 0}
 --- !u!1 &1162901862591441151
 GameObject:
   m_ObjectHideFlags: 0
@@ -5635,6 +5650,7 @@ GameObject:
   - component: {fileID: 1162901862670747210}
   - component: {fileID: 1162901862670747211}
   - component: {fileID: 1162901862670747208}
+  - component: {fileID: 2467944758112304159}
   - component: {fileID: 1921926113892410914}
   m_Layer: 15
   m_Name: shieldCircle
@@ -5642,7 +5658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1162901862670747204
 Transform:
   m_ObjectHideFlags: 0
@@ -5704,7 +5720,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -5767,6 +5783,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2467944758112304159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162901862670747205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b46644c4d5a34948b25b1de40e204e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _character: {fileID: 1162901863548322190}
 --- !u!114 &1921926113892410914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5801,6 +5830,7 @@ GameObject:
   - component: {fileID: 1162901862718496845}
   - component: {fileID: 1162901862718496846}
   - component: {fileID: 5794015877652229794}
+  - component: {fileID: 324766476956530122}
   m_Layer: 0
   m_Name: hitAnim
   m_TagString: Untagged
@@ -6014,6 +6044,20 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
+--- !u!114 &324766476956530122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162901862718496840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d929f2fad65e844c97888c2ddfa6b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackAudio: {fileID: 0}
+  _damageAudio: {fileID: 0}
 --- !u!1 &1162901862803740177
 GameObject:
   m_ObjectHideFlags: 0
@@ -7286,6 +7330,8 @@ MonoBehaviour:
   IsGuardian: 1
   _cam: {fileID: 1162901863281525767}
   view: {fileID: 0}
+  Shielding: 0
+  _shield: {fileID: 0}
 --- !u!114 &1162901863548322191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7464,7 +7510,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863548322300}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ab0c2003fbdc7740bb69f9853ea12c8, type: 3}
   m_Name: 
@@ -7485,6 +7531,7 @@ MonoBehaviour:
     m_Bits: 4194304
   hitAnim: {fileID: 1162901862718496840}
   soul: {fileID: 2050435265373252930, guid: 45689bda04460f14f933cfc1cbe6a564, type: 3}
+  _charScript: {fileID: 0}
 --- !u!114 &1162901863548322176
 MonoBehaviour:
   m_ObjectHideFlags: 0
