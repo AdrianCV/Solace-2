@@ -92,7 +92,7 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         if (view.IsMine)
         {
             _player.jump();
-            print(_player.gameObject.name);
+            // print(_player.gameObject.name);
         }
     }
 

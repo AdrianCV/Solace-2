@@ -2000,6 +2000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createInput: {fileID: 163760115}
   joinInput: {fileID: 436976338}
+  _twoPlayer: 1
 --- !u!4 &1934240887
 Transform:
   m_ObjectHideFlags: 0

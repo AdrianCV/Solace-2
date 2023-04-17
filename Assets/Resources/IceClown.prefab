@@ -896,7 +896,6 @@ MonoBehaviour:
   _cam: {fileID: 5734929817429010061}
   view: {fileID: 0}
   Shielding: 0
-  _shield: {fileID: 0}
 --- !u!114 &2114141836855100458
 MonoBehaviour:
   m_ObjectHideFlags: 0

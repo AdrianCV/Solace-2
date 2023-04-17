@@ -43,8 +43,6 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
 
     public bool Shielding;
 
-    [SerializeField] private GameObject _shield;
-
     private const byte WON_EVENT = 0;
 
 
@@ -243,18 +241,6 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    void Shield()
-    {
-        if (Shielding)
-        {
-            _shield.SetActive(true);
-        }
-        else
-        {
-            _shield.SetActive(false);
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -295,6 +281,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(SavedInput);
             stream.SendNext(MoveInput);
+            stream.SendNext(Shielding);
 
             // Lag compensation
             // stream.SendNext(rb.position);
@@ -305,6 +292,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         {
             SavedInput = (int)stream.ReceiveNext();
             MoveInput = (float)stream.ReceiveNext();
+            Shielding = (bool)stream.ReceiveNext();
 
             // rb.position = (Vector3)stream.ReceiveNext();
             // rb.rotation = (float)stream.ReceiveNext();
