@@ -8,6 +8,12 @@ using ExitGames.Client.Photon;
 
 public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
+    private float coolDown;
+    public bool cooldownActive = false;
+
+    [SerializeField] private float cdTime = 0.5f;
+    [SerializeField] private float upTime = 0.5f;
+
     public float speed = 0.1f;
     [SerializeField] private float m_JumpForce = 400f;
 
@@ -56,6 +62,9 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         //print("Starting " + Time.time);
 
         // Start function WaitAndPrint as a coroutine.
+
+        coolDown = cdTime + upTime;
+
 
         view = GetComponent<PhotonView>();
         AddObservable();
@@ -227,18 +236,38 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
 
     public void IceClownAttack()
     {
-        if (LookInput == 0 && MoveInput == 0)
+        if (!cooldownActive)
         {
-            playerAnim.SetTrigger("attacking");
+            Shielding = false;
+            if (LookInput == 0 && MoveInput == 0)
+            {
+                playerAnim.SetTrigger("attacking");
+            }
+            else if (MoveInput != 0)
+            {
+                playerAnim.SetTrigger("attacking");
+            }
+            else if (LookInput == 1)
+            {
+                playerAnim.SetTrigger("attacking");
+            }
+            else if (LookInput == -1)
+            {
+                playerAnim.SetTrigger("attacking");
+            }
         }
-        else if (MoveInput != 0)
-        {
-            playerAnim.SetTrigger("attacking");
-        }
-        else if (LookInput != 0)
-        {
-            playerAnim.SetTrigger("attacking");
-        }
+    }
+
+    public void EndOfAttack()
+    {
+        cooldownActive = true;
+        // Invoke("closeShield", upTime);
+        Invoke("endCool", coolDown);
+    }
+
+    public void endCool()
+    {
+        cooldownActive = false;
     }
 
     private void OnDrawGizmos()
@@ -279,9 +308,9 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(SavedInput);
-            stream.SendNext(MoveInput);
-            stream.SendNext(Shielding);
+            stream.SendNext((int)SavedInput);
+            stream.SendNext((float)MoveInput);
+            stream.SendNext((bool)Shielding);
 
             // Lag compensation
             // stream.SendNext(rb.position);

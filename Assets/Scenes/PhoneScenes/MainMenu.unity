@@ -2187,6 +2187,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3129807035940133647, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
+      propertyPath: observableSearch
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
@@ -2285,6 +2289,10 @@ PrefabInstance:
     - target: {fileID: -8014928697337248755, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8014928697337248755, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
+      propertyPath: observableSearch
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 928406103804344202, guid: 2d2fae4ece029184d8f8bc3bcbe287f1, type: 3}
       propertyPath: m_IsActive

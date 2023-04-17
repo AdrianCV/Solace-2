@@ -1067,6 +1067,7 @@ MonoBehaviour:
   - {fileID: 821871857}
   - {fileID: 274308516}
   - {fileID: 1629126212}
+  - {fileID: 1522444972}
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2205,6 +2206,7 @@ MonoBehaviour:
   _darkBackground: {fileID: 21300000, guid: 7cc9f8439d1cfac449811fa9bbfa989a, type: 3}
   _lightBackground: {fileID: 21300000, guid: fc8499de6a95e544284d550188b39adf, type: 3}
   _background: {fileID: 483848172}
+  _damageUI: {fileID: 7609892406264002067}
   _ui: {fileID: 1692071868}
   _loadingScreen: {fileID: 918820883}
 --- !u!1 &1143496228
@@ -2955,19 +2957,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1522444970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1522444972}
-        m_TargetAssemblyTypeName: UIMovement, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1522444970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2166,3 +2166,4 @@ MonoBehaviour:
   _stats: {fileID: 0}
   _boughtSprite: {fileID: 1247650859}
   _buyButton: {fileID: 2106670009}
+  _itemName: Ice Clown

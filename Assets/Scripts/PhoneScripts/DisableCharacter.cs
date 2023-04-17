@@ -9,6 +9,8 @@ public class DisableCharacter : MonoBehaviour
     [SerializeField] private GameObject _boughtSprite;
     [SerializeField] private Button _buyButton;
 
+    [SerializeField] private string _itemName;
+
     private void Awake()
     {
         _stats = GameObject.FindObjectOfType<MainManager>();
@@ -17,7 +19,7 @@ public class DisableCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!_stats.PurchasedItems.Contains("Ice Clown"))
+        if (!_stats.PurchasedItems.Contains(_itemName))
         {
             _boughtSprite.SetActive(true);
             _buyButton.interactable = false;

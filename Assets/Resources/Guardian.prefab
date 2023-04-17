@@ -6063,6 +6063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd36022e5d2c9d438987aeb088ca4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownActive: 0
+  cdTime: 0.25
+  upTime: 0.3
   speed: 0.15
   m_JumpForce: 14
   groundedHeight: 0.27
@@ -6270,8 +6273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shield: {fileID: 1162901863410819978}
-  cdTime: 0.25
-  upTime: 0.3
   attackArea: {x: 1.06, y: -0.15}
   attackSize: 1.18
   enemyLayer:
