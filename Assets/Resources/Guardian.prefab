@@ -6086,7 +6086,6 @@ MonoBehaviour:
   SavedInput: 1
   LookInput: 0
   IsGuardian: 1
-  _cam: {fileID: 1162901863281525767}
   view: {fileID: 0}
   Shielding: 0
 --- !u!114 &1162901863548322191

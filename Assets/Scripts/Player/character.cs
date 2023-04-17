@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using Cinemachine;
 
 public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -43,9 +44,9 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     [HideInInspector] public int LookInput;
 
     public bool IsGuardian;
-    [SerializeField] private Camera _cam;
 
     [HideInInspector] public PhotonView view;
+    private CinemachineTargetGroup _group;
 
     public bool Shielding;
 
@@ -56,6 +57,9 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+        _group = GameObject.FindObjectOfType<CinemachineTargetGroup>();
+        _group.AddMember(transform, 1, 0);
+        // _cam.GetComponent <
         // - After 0 seconds, prints "Starting 0.0"
         // - After 0 seconds, prints "Before WaitAndPrint Finishes 0.0"
         // - After 2 seconds, prints "WaitAndPrint 2.0"
@@ -168,7 +172,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            _cam.gameObject.SetActive(false);
+            // _cam.gameObject.SetActive(false);
             gameObject.layer = 11;
             gameObject.tag = "Enemy";
         }
