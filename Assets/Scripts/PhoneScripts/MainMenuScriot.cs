@@ -15,6 +15,8 @@ public class MainMenuScriot : MonoBehaviour
     [SerializeField] private TMP_Text _coins;
     [SerializeField] private TMP_Text _softCoins;
     [SerializeField] private bool onPhone;
+    [SerializeField] private GameObject _dailyReward;
+    [SerializeField] private GameObject _dailyTask;
     public MainManager Tracker;
 
     private void Awake()
@@ -69,5 +71,21 @@ public class MainMenuScriot : MonoBehaviour
     private void OnGUI()
     {
         GUI.Label(new Rect(100, 10, 300, 100), "LightLevel: " + LightSensor.current?.lightLevel.ReadValue());
+    }
+
+    public void ShowDailyTask()
+    {
+        _dailyTask.SetActive(true);
+    }
+
+    public void ShowDailyReward()
+    {
+        _dailyReward.SetActive(true);
+    }
+
+    public void CloseDailyMenu()
+    {
+        _dailyReward.SetActive(false);
+        _dailyTask.SetActive(false);
     }
 }

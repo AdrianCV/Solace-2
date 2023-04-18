@@ -24,7 +24,7 @@ public class DailyRewardButton : MonoBehaviour
         {
             // rewardMenu.SetActive(true);
             _manager.HasRecievedDailyReward = true;
-            _manager.SoftCoins += 500;
+            _manager.SoftCoins += 100;
         }
     }
 }
