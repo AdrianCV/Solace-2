@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 using Cinemachine;
+using System;
 
 public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -43,8 +44,11 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     private IEnumerator coroutine;
 
     public float MoveInput;
-    [HideInInspector] public int SavedInput = 1;
-    [HideInInspector] public int LookInput;
+
+    public Vector2 MovementVector;
+
+    [HideInInspector] public float SavedInput = 1;
+    [HideInInspector] public float LookInput;
 
     public bool IsGuardian;
 
@@ -56,10 +60,16 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     private const byte WON_EVENT = 0;
 
 
+    private MobileJoystick joystick;
+
+    public event Action<Vector2> OnMovement;
 
 
     private void Start()
     {
+        joystick = GameObject.FindObjectOfType<MobileJoystick>();
+        joystick.OnMove += Move;
+
         Group = GameObject.FindObjectOfType<CinemachineTargetGroup>();
         Group.AddMember(transform, 1, 0);
         // _cam.GetComponent <
@@ -82,6 +92,12 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         //print("Before WaitAndPrint Finishes " + Time.time);
     }
 
+    private void Move(Vector2 input)
+    {
+        MovementVector = input;
+        OnMovement?.Invoke(MovementVector);
+    }
+
     private IEnumerator WaitAndPrint(float waitTime)
     {
         while (true)
@@ -97,6 +113,8 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
 
         if (view.IsMine)
         {// MoveInput = Input.GetAxis("Horizontal");
+            MoveInput = MovementVector.x;
+            LookInput = MovementVector.y;
             playerAnim.SetBool("grounded", grounded);
 
             if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("sit"))
@@ -129,8 +147,10 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
             if (MoveInput < 0)
             {
                 // stickRender.flipX = true;
+                print("Looking left");
                 lookingLeft = true;
                 playerAnim.SetBool("running", true);
+                SavedInput = -1;
             }
             // Moving right
             else if (MoveInput > 0)
@@ -138,6 +158,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
                 // stickRender.flipX = false;
                 lookingLeft = false;
                 playerAnim.SetBool("running", true);
+                SavedInput = 1;
             }
             // }
             else
@@ -283,11 +304,11 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         {
             transform.position += (Vector3.right * MoveInput * speed);
             // transform.position += Vector3.right * MoveInput * speed;
-            playerAnim.SetInteger("speed", (int)MoveInput);
+            playerAnim.SetFloat("speed", MoveInput);
         }
         else
         {
-            playerAnim.SetInteger("speed", 0);
+            playerAnim.SetFloat("speed", 0);
         }
     }
 
@@ -303,7 +324,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext((int)SavedInput);
+            stream.SendNext((float)SavedInput);
             stream.SendNext((float)MoveInput);
             stream.SendNext((bool)Shielding);
 
@@ -314,7 +335,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            SavedInput = (int)stream.ReceiveNext();
+            SavedInput = (float)stream.ReceiveNext();
             MoveInput = (float)stream.ReceiveNext();
             Shielding = (bool)stream.ReceiveNext();
 

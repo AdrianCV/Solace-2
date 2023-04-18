@@ -23,8 +23,7 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
-        hash.Clear();
+        SelectGuardian();
         _manager = GameObject.FindObjectOfType<MainManager>();
     }
 
