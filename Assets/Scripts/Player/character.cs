@@ -10,6 +10,7 @@ using System;
 
 public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public AudioSource AudioSource;
     private float coolDown;
     public bool cooldownActive = false;
 
@@ -69,6 +70,8 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     {
         joystick = GameObject.FindObjectOfType<MobileJoystick>();
         joystick.OnMove += Move;
+
+        AudioSource = GetComponent<AudioSource>();
 
         Group = GameObject.FindObjectOfType<CinemachineTargetGroup>();
         Group.AddMember(transform, 1, 0);

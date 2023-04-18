@@ -46,7 +46,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private MainManager _stats;
 
     [SerializeField] private GameObject _wonText;
-    [SerializeField] private GameObject _lostText;
+    // [SerializeField] private GameObject _lostText;
 
     [SerializeField] private GameObject _controls;
 
@@ -72,8 +72,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             _wonText = GameObject.FindGameObjectWithTag("WonText");
             _wonText.SetActive(false);
 
-            _lostText = GameObject.FindGameObjectWithTag("LostText");
-            _lostText.SetActive(false);
 
             _controls = GameObject.FindGameObjectWithTag("Controls");
         }
@@ -296,7 +294,9 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
             if (!_won)
             {
-                _lostText.SetActive(true);
+                _wonText.SetActive(true);
+                _wonText.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+                _wonText.transform.GetChild(0).GetChild(4).GetChild(2).gameObject.SetActive(true);
                 _controls.SetActive(false);
                 transform.GetChild(0).gameObject.SetActive(false);
                 _character.enabled = false;
@@ -306,6 +306,8 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             else
             {
                 _wonText.SetActive(true);
+                _wonText.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+                _wonText.transform.GetChild(0).GetChild(3).GetChild(2).gameObject.SetActive(true);
                 _stats.SoftCoins += _stats.BetAmount;
             }
         }
