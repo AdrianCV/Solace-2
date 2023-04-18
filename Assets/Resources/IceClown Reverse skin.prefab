@@ -239,7 +239,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 026c8152a2e67b7489b0f330eee52c52, type: 2}
+  - {fileID: 2100000, guid: 7a139280ad0755b45a8dbeda9bfb69f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 6018666554351436320}
   - component: {fileID: 1586497779}
   m_Layer: 12
-  m_Name: IceClown
+  m_Name: IceClown Reverse skin
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

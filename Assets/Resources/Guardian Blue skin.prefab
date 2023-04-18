@@ -4955,7 +4955,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 026c8152a2e67b7489b0f330eee52c52, type: 2}
+  - {fileID: 2100000, guid: c1552045dce266c4aa4d357c59abd9e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5973,7 +5973,7 @@ GameObject:
   - component: {fileID: 3129807035940133647}
   - component: {fileID: 1903467759}
   m_Layer: 12
-  m_Name: Guardian
+  m_Name: Guardian Blue skin
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
