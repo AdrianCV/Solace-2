@@ -874,6 +874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd36022e5d2c9d438987aeb088ca4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 0}
+  _attack1: {fileID: 0}
+  _attack2: {fileID: 0}
+  _hit: {fileID: 0}
+  _special: {fileID: 0}
   cooldownActive: 0
   cdTime: 0.25
   upTime: 0.3

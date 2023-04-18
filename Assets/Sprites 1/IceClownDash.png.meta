@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1199fd165b06e664bbd6565b5aa472a8
+guid: 3a97cbd181857e84e8cfd7155639b9dd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iceClownUpAttack_0
+      name: IceClownDash_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,17 +132,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d274f645228ca0349bf70725a1d92e07
-      internalID: 1094600644
+      spriteID: 7ecf4d51973512543b2f0ac14620957e
+      internalID: 532583473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: iceClownUpAttack_1
+      name: IceClownDash_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 160
         y: 0
         width: 160
         height: 160
@@ -153,8 +153,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daa221e10905fe843be41ff6d75c8f37
-      internalID: -899010877
+      spriteID: f61cbca0b2b042d42b5ea58a55898181
+      internalID: -1941343929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceClownDash_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c57431894a519742b50a7ed9e65ac36
+      internalID: 2046782778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceClownDash_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cee8dad6c5a46b4b8b8594e8b877ba7
+      internalID: -1061643905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceClownDash_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 683ed11634d7bfd41a5b66010ab6bc87
+      internalID: 253162440
       vertices: []
       indices: 
       edges: []
@@ -170,8 +233,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      iceClownUpAttack_1: -899010877
-      iceClownUpAttack_0: 1094600644
+      IceClownDash_2: 2046782778
+      IceClownDash_4: 253162440
+      IceClownDash_3: -1061643905
+      IceClownDash_1: -1941343929
+      IceClownDash_0: 532583473
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

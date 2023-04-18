@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f990d6caa5904954fbb472165beecb53
+guid: d02bebe3f1f5184418cd446b5beb12db
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -68,10 +68,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guardianDashAttack_0
+      name: iceClownJump 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2531242caa574da49a232be544569458
-      internalID: -625772591
+      spriteID: 54f3891f2d4ca6245b9453e7e0f9dcaa
+      internalID: -1726347628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guardianDashAttack_1
+      name: iceClownJump 1_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 0
-        width: 128
-        height: 128
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3078ecbfb3d72774f8b9c7f9322e5f63
-      internalID: -278336604
+      spriteID: 6d694d34c2f5f1c4793452c666e407b6
+      internalID: 1091476191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guardianDashAttack_2
+      name: iceClownJump 1_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 320
         y: 0
-        width: 128
-        height: 128
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48b0cf8ace2f78341b2db9725c417eba
-      internalID: 43003504
+      spriteID: d36198a75d990bc438314cd830f4e6fa
+      internalID: 1548655440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guardianDashAttack_3
+      name: iceClownJump 1_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 480
         y: 0
-        width: 128
-        height: 128
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c77dcdc55b975f4ca4cf940d34674bd
-      internalID: 45668655
+      spriteID: 1a30e8fd95704d24ab53cba9d2c4bce8
+      internalID: -695675797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guardianDashAttack_4
+      name: iceClownJump 1_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 640
         y: 0
-        width: 128
-        height: 128
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +216,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 499dfd0af58c9334da063a88c001f3dc
-      internalID: -487405946
+      spriteID: 7e320e9693dc0434783ff3e65bd278a6
+      internalID: 22998732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_5
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6fc86a4b4ffbea4c8653d47977edf2f
+      internalID: 738853858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c3fdbb94c5852e4fbfe7aad57dc4266
+      internalID: 470848250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7dfdfc0ce464ec4bbac492029254eb8
+      internalID: 336134859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a646b17b020a7714b886eee380f9ff9f
+      internalID: -1100915435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_9
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caba02fc980c4ef42b402f7c87eb53c4
+      internalID: -1988060065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iceClownJump 1_10
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3016d47b4a8e3bd499bd884001649ed7
+      internalID: 54955062
       vertices: []
       indices: 
       edges: []
@@ -233,11 +359,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      guardianDashAttack_4: -487405946
-      guardianDashAttack_2: 43003504
-      guardianDashAttack_1: -278336604
-      guardianDashAttack_0: -625772591
-      guardianDashAttack_3: 45668655
+      iceClownJump 1_0: -1726347628
+      iceClownJump 1_6: 470848250
+      iceClownJump 1_3: -695675797
+      iceClownJump 1_9: -1988060065
+      iceClownJump 1_8: -1100915435
+      iceClownJump 1_7: 336134859
+      iceClownJump 1_1: 1091476191
+      iceClownJump 1_10: 54955062
+      iceClownJump 1_4: 22998732
+      iceClownJump 1_2: 1548655440
+      iceClownJump 1_5: 738853858
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
