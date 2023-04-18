@@ -51,7 +51,7 @@ public class MainMenuScriot : MonoBehaviour
     public void RankedButtons()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("CharacterSelect");
     }
 
     public void Return()
