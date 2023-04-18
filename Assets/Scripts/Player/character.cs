@@ -21,6 +21,9 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     const float k_GroundedRadius = .01f;
     private Rigidbody2D rb;
 
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
     public float groundedHeight = 0.51f;
     public float checkRate = 1.0f;
     public bool grounded = false;
@@ -46,7 +49,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
     public bool IsGuardian;
 
     [HideInInspector] public PhotonView view;
-    private CinemachineTargetGroup _group;
+    public CinemachineTargetGroup Group;
 
     public bool Shielding;
 
@@ -57,8 +60,8 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        _group = GameObject.FindObjectOfType<CinemachineTargetGroup>();
-        _group.AddMember(transform, 1, 0);
+        Group = GameObject.FindObjectOfType<CinemachineTargetGroup>();
+        Group.AddMember(transform, 1, 0);
         // _cam.GetComponent <
         // - After 0 seconds, prints "Starting 0.0"
         // - After 0 seconds, prints "Before WaitAndPrint Finishes 0.0"
@@ -142,28 +145,6 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
                 playerAnim.SetBool("running", false);
             }
 
-            // Wall jump
-
-            wallCheck();
-            if (onWall)
-            {
-
-                playerAnim.SetBool("onWall", true);
-
-                //rb.velocity = new Vector2(rb.velocity.x, 0);
-
-                /*if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    rb.AddForce(new Vector2(300*-looking, 600));
-                    StartCoroutine(waitWall());
-                }*/
-
-            }
-            else if (!onWall)
-            {
-                playerAnim.SetBool("onWall", false);
-            }
-
             if (this.transform.position.y > startHeight + jumpHeight)
             {
                 //rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -176,6 +157,15 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
             gameObject.layer = 11;
             gameObject.tag = "Enemy";
         }
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     public void jump()
@@ -187,6 +177,7 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         {
             startHeight = this.transform.position.y;
             rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
+
             playerAnim.SetTrigger("jump");
         }
 

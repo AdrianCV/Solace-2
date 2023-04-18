@@ -6066,8 +6066,10 @@ MonoBehaviour:
   cooldownActive: 0
   cdTime: 0.25
   upTime: 0.3
-  speed: 0.15
-  m_JumpForce: 14
+  speed: 0.2
+  m_JumpForce: 24
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
   groundedHeight: 0.27
   checkRate: 1
   grounded: 0
@@ -6087,6 +6089,7 @@ MonoBehaviour:
   LookInput: 0
   IsGuardian: 1
   view: {fileID: 0}
+  Group: {fileID: 0}
   Shielding: 0
 --- !u!114 &1162901863548322191
 MonoBehaviour:

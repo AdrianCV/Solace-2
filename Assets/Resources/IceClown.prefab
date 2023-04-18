@@ -876,8 +876,10 @@ MonoBehaviour:
   cooldownActive: 0
   cdTime: 0.25
   upTime: 0.3
-  speed: 0.1
-  m_JumpForce: 14
+  speed: 0.15
+  m_JumpForce: 24
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
   groundedHeight: 0.27
   checkRate: 1
   grounded: 0
@@ -896,7 +898,6 @@ MonoBehaviour:
   SavedInput: 1
   LookInput: 0
   IsGuardian: 0
-  _cam: {fileID: 5734929817429010061}
   view: {fileID: 0}
   Shielding: 0
 --- !u!114 &2114141836855100458

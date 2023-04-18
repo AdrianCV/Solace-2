@@ -348,7 +348,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 41.554165
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -710,7 +710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216449919}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5013018, y: -26, z: -0.44237033}
+  m_LocalPosition: {x: 2.5013018, y: -9.37, z: -0.44237033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 218105036}
   m_Follow: {fileID: 218105036}
   m_Lens:
-    FieldOfView: 41.554165
+    FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1212,7 +1212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &429607881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,7 +1556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1162901863548322300, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2887897611000436535, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: sceneViewId

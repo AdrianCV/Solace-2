@@ -275,6 +275,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!_over)
         {
+            _character.Group.RemoveMember(transform);
             _over = true;
             StartCoroutine(HandleGameOver());
         }
