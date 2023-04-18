@@ -899,6 +899,7 @@ MonoBehaviour:
   LookInput: 0
   IsGuardian: 0
   view: {fileID: 0}
+  Group: {fileID: 0}
   Shielding: 0
 --- !u!114 &2114141836855100458
 MonoBehaviour:

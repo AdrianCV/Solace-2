@@ -10,7 +10,15 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _betMenu;
     [SerializeField] private GameObject _characterSelect;
-    [SerializeField] private TMP_InputField _betAmount;
+    [SerializeField] private TMP_Text _betField;
+    [SerializeField] private TMP_Text _softCurrency;
+    [SerializeField] private TMP_Text _hardCurrency;
+
+    [SerializeField] private GameObject _selectedGuardian;
+    [SerializeField] private GameObject _selectedIceClown;
+
+    int _betAmount;
+
     private MainManager _manager;
 
     private void Start()
@@ -20,14 +28,23 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
         _manager = GameObject.FindObjectOfType<MainManager>();
     }
 
+    private void Update()
+    {
+        _betField.text = "" + _betAmount;
+        _softCurrency.text = "" + _manager.SoftCoins;
+        _hardCurrency.text = "" + _manager.Coins;
+    }
+
 
     public void SelectGuardian()
     {
         Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Clear();
         hash.Add("Guardian", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 
-        ConfirmCharacter();
+        _selectedGuardian.SetActive(true);
+        _selectedIceClown.SetActive(false);
     }
 
     public override void OnLeftRoom()
@@ -38,23 +55,35 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
     public void SelectIceClown()
     {
         Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Clear();
         hash.Add("IceClown", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 
-        ConfirmCharacter();
+        _selectedGuardian.SetActive(false);
+        _selectedIceClown.SetActive(true);
     }
 
-    void ConfirmCharacter()
+    public void ConfirmCharacter()
     {
         _characterSelect.SetActive(false);
         _betMenu.SetActive(true);
+    }
+
+    public void IncreaseBet()
+    {
+        _betAmount += 10;
+    }
+
+    public void DecreaseBet()
+    {
+        _betAmount -= 10;
     }
 
     public void ConfirmBet()
     {
         try
         {
-            var tempBet = int.Parse(_betAmount.text);
+            var tempBet = int.Parse(_betField.text);
             _manager.BetAmount = tempBet > _manager.SoftCoins ? _manager.SoftCoins : tempBet;
         }
         catch
