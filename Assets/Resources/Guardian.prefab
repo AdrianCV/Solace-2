@@ -6064,6 +6064,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd36022e5d2c9d438987aeb088ca4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioSource: {fileID: 0}
+  _attack1: {fileID: 0}
+  _attack2: {fileID: 0}
+  _hit: {fileID: 0}
+  _special: {fileID: 0}
   cooldownActive: 0
   cdTime: 0.25
   upTime: 0.3
@@ -6310,7 +6315,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863548322300}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77ba95b68ed27294ba58449bf0e2052d, type: 3}
   m_Name: 
@@ -6322,7 +6327,7 @@ MonoBehaviour:
   dashMeter: {fileID: 0}
   dashParticle: {fileID: 7183287166009203496, guid: b35b3c05c71cb3a46b2a878638ea1e52, type: 3}
   guardianAnim: {fileID: 1162901862515322688}
-  dashAnim: {fileID: 0}
+  dashAnim: {fileID: 1162901862515322688}
   isDashing: 0
 --- !u!114 &1162901863548322178
 MonoBehaviour:

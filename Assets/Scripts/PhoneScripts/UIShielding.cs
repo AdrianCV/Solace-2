@@ -14,16 +14,26 @@ public class UIShielding : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!_player.IsGuardian)
+        {
+            _player.Shielding = true;
+            StartCoroutine(ShieldTimer());
+        }
+        else
+        {
+            Dash();
+        }
         isPressed = true;
-        _player.Shielding = true;
-        StartCoroutine(ShieldTimer());
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        StopAllCoroutines();
+        if (!_player.IsGuardian)
+        {
+            StopAllCoroutines();
+            _player.Shielding = false;
+        }
         isPressed = false;
-        _player.Shielding = false;
     }
 
     public void OnUpdateSelected(BaseEventData eventData)
@@ -45,6 +55,14 @@ public class UIShielding : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         yield return new WaitForSeconds(5);
         isPressed = false;
         _player.Shielding = false;
+    }
+
+    void Dash()
+    {
+        if (!isPressed)
+        {
+            _player.GetComponent<dashMove>().dash();
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

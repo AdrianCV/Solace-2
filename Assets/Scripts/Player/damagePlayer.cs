@@ -144,6 +144,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.RaiseEvent(DAMAGE_EVENT, damageTaken, RaiseEventOptions.Default, SendOptions.SendReliable);
 
             _character.playerAnim.SetTrigger("hurt");
+            _character.AudioSource.PlayOneShot(_character._hit);
         }
 
 
@@ -296,7 +297,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 _wonText.SetActive(true);
                 _wonText.transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
-                _wonText.transform.GetChild(0).GetChild(4).GetChild(2).gameObject.SetActive(true);
+                // _wonText.transform.GetChild(0).GetChild(4).GetChild(2).gameObject.SetActive(true);
                 _controls.SetActive(false);
                 transform.GetChild(0).gameObject.SetActive(false);
                 _character.enabled = false;
@@ -307,7 +308,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             {
                 _wonText.SetActive(true);
                 _wonText.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-                _wonText.transform.GetChild(0).GetChild(3).GetChild(2).gameObject.SetActive(true);
+                // _wonText.transform.GetChild(0).GetChild(3).GetChild(2).gameObject.SetActive(true);
                 _stats.SoftCoins += _stats.BetAmount;
             }
         }

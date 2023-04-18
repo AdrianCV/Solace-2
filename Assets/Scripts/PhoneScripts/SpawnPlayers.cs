@@ -6,6 +6,8 @@ using Photon.Pun;
 public class SpawnPlayers : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject _shield;
+    public GameObject _dash;
 
     // Start is called before the first frame update
     void Awake()
@@ -14,10 +16,12 @@ public class SpawnPlayers : MonoBehaviour
         if (PhotonNetwork.LocalPlayer.CustomProperties["Guardian"] != null)
         {
             preName = "Guardian";
+            _dash.SetActive(true);
         }
         else
         {
             preName = "IceClown";
+            _shield.SetActive(true);
         }
 
         // if (PhotonNetwork.CurrentRoom.PlayerCount == 2)

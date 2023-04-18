@@ -7,6 +7,7 @@ public class dashMove : MonoBehaviour
 {
 
     private Rigidbody2D rb;
+    private character _char;
 
     public float dashSpeed;
     public float dashTime;
@@ -39,11 +40,13 @@ public class dashMove : MonoBehaviour
     {
         timer = coolDownTime;
         dashTime = startDashTime;
+
+        _char = GetComponent<character>();
     }
 
-    public void dash(InputAction.CallbackContext context)
+    public void dash()
     {
-        if (context.started && timer > coolDownTime && GetComponent<character>().isSitting == false && GetComponent<shockShield>().shieldOn == false)
+        if (timer > coolDownTime && GetComponent<character>().isSitting == false && GetComponent<shockShield>().shieldOn == false)
         {
             toDash = true;
         }
@@ -51,7 +54,7 @@ public class dashMove : MonoBehaviour
 
     void Update()
     {
-        if (!GetComponent<character>().stickRender.flipX)
+        if (_char.MoveInput < 0)
         {
             playerLooking = -1;
         }

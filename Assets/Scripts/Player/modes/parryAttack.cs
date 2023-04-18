@@ -42,18 +42,22 @@ public class parryAttack : MonoBehaviour
             if (_charScript.MoveInput == 0 && _charScript.LookInput == 0)
             {
                 hitAnim.GetComponent<Animator>().SetTrigger("hit");
+                _charScript.AudioSource.PlayOneShot(_charScript._attack1);
             }
             else if (_charScript.MoveInput != 0)
             {
-                hitAnim.GetComponent<Animator>().SetTrigger("hit");
+                hitAnim.GetComponent<Animator>().SetTrigger("runHit");
+                _charScript.AudioSource.PlayOneShot(_charScript._attack2);
             }
-            else if (_charScript.LookInput == 1)
+            else if (_charScript.LookInput > 0 && !_charScript.grounded)
             {
-                hitAnim.GetComponent<Animator>().SetTrigger("hit");
+                hitAnim.GetComponent<Animator>().SetTrigger("upHit");
+                _charScript.AudioSource.PlayOneShot(_charScript._attack1);
             }
-            else if (_charScript.LookInput == -1)
+            else if (_charScript.LookInput < 0 && !_charScript.grounded)
             {
-                hitAnim.GetComponent<Animator>().SetTrigger("hit");
+                hitAnim.GetComponent<Animator>().SetTrigger("downHit");
+                _charScript.AudioSource.PlayOneShot(_charScript._attack2);
             }
 
             // hitAnim.GetComponent<AudioSource>().Play();

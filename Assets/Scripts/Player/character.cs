@@ -11,6 +11,12 @@ using System;
 public class character : MonoBehaviourPunCallbacks, IPunObservable
 {
     public AudioSource AudioSource;
+
+    public AudioClip _attack1;
+    public AudioClip _attack2;
+    public AudioClip _hit;
+    public AudioClip _special;
+
     private float coolDown;
     public bool cooldownActive = false;
 
@@ -261,18 +267,22 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
             if (LookInput == 0 && MoveInput == 0)
             {
                 playerAnim.SetTrigger("attacking");
+                AudioSource.PlayOneShot(_attack1);
             }
             else if (MoveInput != 0)
             {
-                playerAnim.SetTrigger("attacking");
+                playerAnim.SetTrigger("runHit");
+                AudioSource.PlayOneShot(_attack2);
             }
-            else if (LookInput == 1)
+            else if (LookInput > 0 && !grounded)
             {
-                playerAnim.SetTrigger("attacking");
+                playerAnim.SetTrigger("upHit");
+                AudioSource.PlayOneShot(_attack1);
             }
-            else if (LookInput == -1)
+            else if (LookInput < 0 && !grounded)
             {
-                playerAnim.SetTrigger("attacking");
+                playerAnim.SetTrigger("downHit");
+                AudioSource.PlayOneShot(_attack2);
             }
         }
     }
