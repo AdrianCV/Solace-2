@@ -1212,7 +1212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &429607881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,7 +1489,7 @@ PrefabInstance:
     - target: {fileID: 1162901862515322695, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 984de0cf8a6740249bfb24852df799d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 4c3bcc435ab07824296e44a9b3d028fb, type: 2}
     - target: {fileID: 1162901862893630678, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1542,13 +1542,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1162901863548322189, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162901863548322189, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c3bcc435ab07824296e44a9b3d028fb, type: 2}
     - target: {fileID: 1162901863548322300, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_Name
       value: Guardian
       objectReference: {fileID: 0}
     - target: {fileID: 1162901863548322300, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2887897611000436535, guid: 4e494bd504d72a5499cf99897e89d831, type: 3}
       propertyPath: sceneViewId
@@ -3635,7 +3643,7 @@ GameObject:
   - component: {fileID: 1626100629}
   - component: {fileID: 1626100631}
   - component: {fileID: 1626100632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

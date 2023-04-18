@@ -34,8 +34,8 @@ public class MainMenuScriot : MonoBehaviour
             return;
         }
 
-        _coins.text = "Coins: " + Tracker.Coins;
-        _softCoins.text = "Soft Coins: " + Tracker.SoftCoins;
+        _coins.text = "" + Tracker.Coins;
+        _softCoins.text = "" + Tracker.SoftCoins;
         // print(_coins.text);
         Tracker.Coins = Mathf.Max(Tracker.Coins, 0);
     }

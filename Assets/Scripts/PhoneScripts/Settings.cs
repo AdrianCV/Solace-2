@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private GameObject[] otherUIElements;
+    [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private GameObject closeButton;
-    [SerializeField] private GameObject resetButton;
+    [SerializeField] private GameObject _currency;
+    // [SerializeField] private GameObject resetButton;
     [SerializeField] private MainManager _stats;
 
     private void Awake()
@@ -16,12 +17,12 @@ public class Settings : MonoBehaviour
 
     public void SettingsButton()
     {
-        foreach (GameObject element in otherUIElements)
-        {
-            element.SetActive(false);
-        }
+        _defaultMenu.SetActive(false);
         closeButton.SetActive(true);
-        resetButton.SetActive(true);
+        gameObject.SetActive(true);
+        _currency.SetActive(false);
+
+        // resetButton.SetActive(true);
     }
 
     public void Reset()
@@ -33,11 +34,11 @@ public class Settings : MonoBehaviour
 
     public void CloseSettings()
     {
-        foreach (GameObject element in otherUIElements)
-        {
-            element.SetActive(true);
-        }
+        _defaultMenu.SetActive(true);
         closeButton.SetActive(false);
-        resetButton.SetActive(false);
+        gameObject.SetActive(false);
+        _currency.SetActive(true);
+
+        // resetButton.SetActive(false);
     }
 }
