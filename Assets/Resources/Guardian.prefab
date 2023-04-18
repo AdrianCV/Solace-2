@@ -6085,6 +6085,7 @@ MonoBehaviour:
   isSitting: 0
   wallDistance: 0.4
   MoveInput: 0
+  MovementVector: {x: 0, y: 0}
   SavedInput: 1
   LookInput: 0
   IsGuardian: 1
