@@ -8,6 +8,7 @@ using TMPro;
 
 public class BuyableItemScript : MonoBehaviour
 {
+    AudioSource _audioSource;
     [SerializeField] private Button _buyButton;
     [SerializeField] private TMP_Text _itemName;
     [SerializeField] private GameObject _boughtSprite;
@@ -24,6 +25,7 @@ public class BuyableItemScript : MonoBehaviour
     private void Awake()
     {
         _manager = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = _manager.GetComponent<AudioSource>();
 
         if (_item != null)
         {
@@ -47,6 +49,7 @@ public class BuyableItemScript : MonoBehaviour
     public void BuyItem()
     {
         // _manager.saveManager.SaveGame();
+        _audioSource.Play();
 
         if (_repeatable)
         {
@@ -65,6 +68,7 @@ public class BuyableItemScript : MonoBehaviour
 
     public void BuyCoins()
     {
+        _audioSource.Play();
         _mainMenu.Tracker.Coins += _coinValue;
     }
 }

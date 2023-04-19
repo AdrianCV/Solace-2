@@ -15,20 +15,32 @@ public class StoreScript : MonoBehaviour
     [SerializeField] private GameObject _backButton;
     [SerializeField] private GameObject _mainBackButton;
 
+    [SerializeField] private MainManager _manager;
+    [SerializeField] AudioSource _audioSource;
+
+    private void Start()
+    {
+        _manager = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = _manager.GetComponent<AudioSource>();
+    }
+
     public void ShowStoreMenu()
     {
+        _audioSource.Play();
         defaultMenu.SetActive(false);
         _mainStore.SetActive(true);
     }
 
     public void CloseStore()
     {
+        _audioSource.Play();
         defaultMenu.SetActive(true);
         _mainStore.SetActive(false);
     }
 
     public void ShowSkins()
     {
+        _audioSource.Play();
         skinMenu.SetActive(true);
         storeMenu.SetActive(false);
         characterMenu.SetActive(false);
@@ -40,6 +52,7 @@ public class StoreScript : MonoBehaviour
 
     public void CharacterMenu()
     {
+        _audioSource.Play();
         skinMenu.SetActive(false);
         storeMenu.SetActive(false);
         characterMenu.SetActive(true);
@@ -51,6 +64,7 @@ public class StoreScript : MonoBehaviour
 
     public void CoinsMenu()
     {
+        _audioSource.Play();
         skinMenu.SetActive(false);
         storeMenu.SetActive(false);
         characterMenu.SetActive(false);
@@ -62,6 +76,7 @@ public class StoreScript : MonoBehaviour
 
     public void CloseSmallMenu()
     {
+        _audioSource.Play();
         _backButton.SetActive(false);
         _mainBackButton.SetActive(true);
         storeMenu.SetActive(true);

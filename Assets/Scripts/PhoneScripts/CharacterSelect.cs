@@ -20,11 +20,13 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
     int _betAmount;
 
     private MainManager _manager;
+    AudioSource _audioSource;
 
     private void Start()
     {
         SelectGuardian();
         _manager = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = _manager.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -41,6 +43,7 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
         hash.Clear();
         hash.Add("Guardian", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        _audioSource.Play();
 
         _selectedGuardian.SetActive(true);
         _selectedIceClown.SetActive(false);
@@ -57,6 +60,7 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
         hash.Clear();
         hash.Add("IceClown", PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        _audioSource.Play();
 
         _selectedGuardian.SetActive(false);
         _selectedIceClown.SetActive(true);
@@ -66,20 +70,24 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
     {
         _characterSelect.SetActive(false);
         _betMenu.SetActive(true);
+        _audioSource.Play();
     }
 
     public void IncreaseBet()
     {
         _betAmount += 10;
+        _audioSource.Play();
     }
 
     public void DecreaseBet()
     {
         _betAmount -= 10;
+        _audioSource.Play();
     }
 
     public void ConfirmBet()
     {
+        _audioSource.Play();
         try
         {
             var tempBet = int.Parse(_betField.text);

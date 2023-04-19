@@ -7,19 +7,23 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject _currency;
+    [SerializeField] private GameObject _parent;
     // [SerializeField] private GameObject resetButton;
     [SerializeField] private MainManager _stats;
+    [SerializeField] AudioSource _audioSource;
 
     private void Awake()
     {
         _stats = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = _stats.GetComponent<AudioSource>();
     }
 
     public void SettingsButton()
     {
+        _audioSource.Play();
         _defaultMenu.SetActive(false);
         closeButton.SetActive(true);
-        gameObject.SetActive(true);
+        _parent.SetActive(true);
         _currency.SetActive(false);
 
         // resetButton.SetActive(true);
@@ -34,9 +38,10 @@ public class Settings : MonoBehaviour
 
     public void CloseSettings()
     {
+        _audioSource.Play();
         _defaultMenu.SetActive(true);
         closeButton.SetActive(false);
-        gameObject.SetActive(false);
+        _parent.SetActive(false);
         _currency.SetActive(true);
 
         // resetButton.SetActive(false);

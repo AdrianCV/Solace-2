@@ -7,10 +7,10 @@ using TMPro;
 
 public class LightCheck : MonoBehaviour
 {
-    [SerializeField] private Sprite _darkBackground;
-    [SerializeField] private Sprite _lightBackground;
+    [SerializeField] private GameObject _darkBackground;
+    [SerializeField] private GameObject _lightBackground;
 
-    [SerializeField] private SpriteRenderer _background;
+
     [SerializeField] private GameObject _damageUI;
     [SerializeField] private GameObject _ui;
     [SerializeField] private GameObject _loadingScreen;
@@ -31,11 +31,11 @@ public class LightCheck : MonoBehaviour
 
         if (LightSensor.current?.lightLevel.ReadValue() < 200)
         {
-            _background.sprite = _darkBackground;
+            _darkBackground.SetActive(true);
         }
         else
         {
-            _background.sprite = _lightBackground;
+            _lightBackground.SetActive(true);
         }
     }
 

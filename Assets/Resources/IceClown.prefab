@@ -942,6 +942,7 @@ MonoBehaviour:
   _won: 0
   _damageBox: {fileID: 4280340610412273459}
   uiDamage: {fileID: 0}
+  uiDamageText: {fileID: 0}
   weight: 2.5
   _stats: {fileID: 0}
   _wonText: {fileID: 0}

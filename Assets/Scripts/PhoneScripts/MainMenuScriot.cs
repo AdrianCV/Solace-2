@@ -10,6 +10,7 @@ using Photon.Pun;
 
 public class MainMenuScriot : MonoBehaviour
 {
+    AudioSource _audioSource;
     [SerializeField] private GameObject _rankedSelect;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private TMP_Text _coins;
@@ -22,6 +23,7 @@ public class MainMenuScriot : MonoBehaviour
     private void Awake()
     {
         Tracker = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = Tracker.GetComponent<AudioSource>();
 
         if (onPhone)
         {
@@ -44,11 +46,13 @@ public class MainMenuScriot : MonoBehaviour
 
     public void StartButton()
     {
+        _audioSource.Play();
         SceneManager.LoadScene("CharacterSelect");
     }
 
     public void RankedButtons()
     {
+        _audioSource.Play();
         gameObject.SetActive(false);
         SceneManager.LoadScene("CharacterSelect");
     }
@@ -59,11 +63,13 @@ public class MainMenuScriot : MonoBehaviour
         {
             _rankedSelect.SetActive(false);
             _defaultMenu.SetActive(true);
+            _audioSource.Play();
         }
         else
         {
             PhotonNetwork.Disconnect();
             SceneManager.LoadScene("MainMenu");
+            _audioSource.Play();
         }
     }
 
@@ -75,16 +81,19 @@ public class MainMenuScriot : MonoBehaviour
     public void ShowDailyTask()
     {
         _dailyTask.SetActive(true);
+        _audioSource.Play();
     }
 
     public void ShowDailyReward()
     {
         _dailyReward.SetActive(true);
+        _audioSource.Play();
     }
 
     public void CloseDailyMenu()
     {
         _dailyReward.SetActive(false);
         _dailyTask.SetActive(false);
+        _audioSource.Play();
     }
 }

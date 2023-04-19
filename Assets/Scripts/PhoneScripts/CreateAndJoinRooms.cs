@@ -15,8 +15,18 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     [SerializeField] bool _twoPlayer;
 
+    MainManager _manager;
+    AudioSource _audioSource;
+
+    private void Start()
+    {
+        _manager = GameObject.FindObjectOfType<MainManager>();
+        _audioSource = _manager.GetComponent<AudioSource>();
+    }
+
     public void CreateRoom()
     {
+        _audioSource.Play();
         RoomOptions roomOptions = new RoomOptions();
 
         if (_twoPlayer)
@@ -33,6 +43,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
+        _audioSource.Play();
         PhotonNetwork.JoinRoom(joinInput.text);
     }
 
@@ -43,6 +54,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public void MainMenu()
     {
+        _audioSource.Play();
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("MainMenu");
     }
