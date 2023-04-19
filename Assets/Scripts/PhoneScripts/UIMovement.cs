@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IUpdateSelectedHandler, IPunObservable
 {
@@ -14,7 +15,11 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
     [SerializeField] private bool isUp;
     [SerializeField] private bool isDown;
 
+    [SerializeField] private GameObject _leaveMenu;
+
     private character _player;
+    MainManager _manager;
+    AudioSource _audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,8 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         if (view.IsMine)
         {
             _player = view.GetComponent<character>();
+            _manager = GameObject.FindObjectOfType<MainManager>();
+            _audioSource = _manager.GetComponent<AudioSource>();
         }
     }
 
@@ -40,7 +47,6 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
 
     public void LookUp()
     {
-
         view.GetComponent<character>().LookInput = 1;
     }
 
@@ -106,6 +112,24 @@ public class UIMovement : MonoBehaviour, IPointerUpHandler, IPointerDownHandler,
         {
             _player.IceClownAttack();
         }
+    }
+
+    public void LeaveMenu()
+    {
+        _audioSource.Play();
+        _leaveMenu.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        _audioSource.Play();
+        _leaveMenu.SetActive(false);
+    }
+
+    public void LeaveGame()
+    {
+        _audioSource.Play();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

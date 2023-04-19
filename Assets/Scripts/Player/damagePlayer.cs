@@ -69,6 +69,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
 
             uiDamage = ui.transform.GetChild(PhotonNetwork.PlayerList.Length - 1).GetComponent<UIDamage>();
+            uiDamage.Character = this;
             uiDamageText = uiDamage.transform.GetChild(0).GetComponent<TMP_Text>();
 
             _wonText = GameObject.FindGameObjectWithTag("WonText");
