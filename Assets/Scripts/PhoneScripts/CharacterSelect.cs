@@ -24,13 +24,20 @@ public class CharacterSelect : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        SelectGuardian();
         _manager = GameObject.FindObjectOfType<MainManager>();
         _audioSource = _manager.GetComponent<AudioSource>();
+
+        Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+        hash.Clear();
+        hash.Add("Guardian", PhotonNetwork.LocalPlayer.ActorNumber);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+
+        // SelectGuardian();
     }
 
     private void Update()
     {
+        _betAmount = Mathf.Max(_betAmount, 0);
         _betField.text = "" + _betAmount;
         _softCurrency.text = "" + _manager.SoftCoins;
         _hardCurrency.text = "" + _manager.Coins;
