@@ -33,6 +33,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] private GameObject _damageBox;
 
     public UIDamage uiDamage;
+    public TMP_Text uiDamageText;
 
     public const byte DAMAGE_EVENT = 0;
     public const byte GAMEOVER_EVENT = 1;
@@ -68,6 +69,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
 
 
             uiDamage = ui.transform.GetChild(PhotonNetwork.PlayerList.Length - 1).GetComponent<UIDamage>();
+            uiDamageText = uiDamage.transform.GetChild(0).GetComponent<TMP_Text>();
 
             _wonText = GameObject.FindGameObjectWithTag("WonText");
             _wonText.SetActive(false);
@@ -181,17 +183,14 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
             lives--;
             if (lives == 0 && !_over)
             {
-
+                PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendReliable);
+                GameOver();
+                CalculateRank();
             }
             else
             {
                 transform.position = new Vector2(0, 0);
             }
-
-            CalculateRank();
-
-            PhotonNetwork.RaiseEvent(GAMEOVER_EVENT, _stats.RankedPoint, RaiseEventOptions.Default, SendOptions.SendReliable);
-            GameOver();
         }
     }
 
@@ -249,7 +248,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (obj.Code == DAMAGE_EVENT)
         {
-            uiDamage.transform.GetChild(0).GetComponent<TMP_Text>().text = damageTaken + "%";
+            uiDamageText.text = damageTaken + "%";
         }
 
         if (obj.Code == GAMEOVER_EVENT)
@@ -283,7 +282,6 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator HandleGameOver()
     {
         yield return new WaitForSeconds(1);
-        transform.position = new Vector2(0, 0);
         if (lives > 0)
         {
             _won = true;
@@ -319,5 +317,7 @@ public class damagePlayer : MonoBehaviourPunCallbacks, IPunObservable
                 gameObject.SetActive(false);
             }
         }
+
+        transform.position = new Vector2(0, 0);
     }
 }

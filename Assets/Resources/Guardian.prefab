@@ -5299,8 +5299,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901862718496840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1.24, z: 0}
-  m_LocalScale: {x: 2.116395, y: 2.4500916, z: 1}
+  m_LocalPosition: {x: 1.1, y: 0.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1162901862484218993}
@@ -5495,13 +5495,13 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: hit
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: runHit
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: upHit
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: downHit
   m_SynchronizeLayers:
   - SynchronizeType: 1
@@ -5849,8 +5849,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162901863410819978}
   m_LocalRotation: {x: -0, y: -0, z: -0.5890977, w: 0.8080619}
-  m_LocalPosition: {x: 0.018, y: -0.077, z: 0}
-  m_LocalScale: {x: 2.1685522, y: 1.1807742, z: 1}
+  m_LocalPosition: {x: 0.4702, y: -0.077, z: 0}
+  m_LocalScale: {x: 2.1685522, y: 1.778246, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1162901862718496847}
@@ -6120,7 +6120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageTaken: 0
-  lives: 1
+  lives: 3
   hitEffect: {fileID: 7111067520612749463, guid: 6f52278c462af2b4493ce8e0b11e6670, type: 3}
   deathAnim: {fileID: 0}
   isDead: 0
@@ -6129,6 +6129,7 @@ MonoBehaviour:
   _won: 0
   _damageBox: {fileID: 1162901863410819978}
   uiDamage: {fileID: 0}
+  uiDamageText: {fileID: 0}
   weight: 1.25
   _stats: {fileID: 0}
   _wonText: {fileID: 0}

@@ -264,13 +264,14 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         if (!cooldownActive)
         {
             Shielding = false;
-            if (LookInput == 0 && MoveInput == 0)
+            if (LookInput == 0 && MoveInput == 0 || !grounded && MoveInput != 0)
             {
                 playerAnim.SetTrigger("attacking");
                 AudioSource.PlayOneShot(_attack1);
             }
-            else if (MoveInput != 0)
+            else if (MoveInput != 0 && grounded)
             {
+                StartCoroutine(DashAttack());
                 playerAnim.SetTrigger("runHit");
                 AudioSource.PlayOneShot(_attack2);
             }
@@ -292,6 +293,13 @@ public class character : MonoBehaviourPunCallbacks, IPunObservable
         cooldownActive = true;
         // Invoke("closeShield", upTime);
         Invoke("endCool", coolDown);
+    }
+
+    IEnumerator DashAttack()
+    {
+        speed *= 1.2f;
+        yield return new WaitForSeconds(0.3f);
+        speed /= 1.2f;
     }
 
     public void endCool()

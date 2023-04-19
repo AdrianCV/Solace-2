@@ -6486,7 +6486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _darkBackground: {fileID: 21300000, guid: 7cc9f8439d1cfac449811fa9bbfa989a, type: 3}
   _lightBackground: {fileID: 21300000, guid: fc8499de6a95e544284d550188b39adf, type: 3}
-  _background: {fileID: 0}
+  _background: {fileID: 243384361}
   _damageUI: {fileID: 7609892406264002067}
   _ui: {fileID: 1692071868}
   _loadingScreen: {fileID: 918820883}
@@ -10043,9 +10043,9 @@ RectTransform:
   m_LocalScale: {x: 0.540625, y: 0.540625, z: 0.540625}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 981277352}
   - {fileID: 608862250}
   - {fileID: 915188128}
-  - {fileID: 981277352}
   - {fileID: 1106813766}
   m_Father: {fileID: 7609892406264002071}
   m_RootOrder: -1
@@ -11476,9 +11476,9 @@ RectTransform:
   m_LocalScale: {x: 0.540625, y: 0.540625, z: 0.540625}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1469423304555621601}
   - {fileID: 872748344}
   - {fileID: 847039880}
-  - {fileID: 1469423304555621601}
   - {fileID: 43313419}
   m_Father: {fileID: 7609892406264002071}
   m_RootOrder: -1
@@ -11734,11 +11734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6033922295033744556, guid: 6ee31731fef29a24bb03086edce9085f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6033922295033744556, guid: 6ee31731fef29a24bb03086edce9085f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6033922295033744556, guid: 6ee31731fef29a24bb03086edce9085f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -131,7 +131,7 @@ public class dashMove : MonoBehaviour
 
         // calculate time left
 
-        dashMeter.material.SetFloat("_Health", timer / coolDownTime);
+        // dashMeter.material.SetFloat("_Health", timer / coolDownTime);
 
     }
 
